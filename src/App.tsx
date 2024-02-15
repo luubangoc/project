@@ -1,10 +1,17 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect} from "react";
+import { useDispatch } from "react-redux";
+import { handleProductsFetchRequest } from "./features/Redux/Reducers/productSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "./features/Redux/Store/store";
 function App() {
-  const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(handleProductsFetchRequest());
+  }, []);
 
-  return (
-    <Fragment></Fragment>
-  );
+  const listProduct = useSelector((state:RootState)=>state.reducer.productReducer.listProduct)
+  console.log(listProduct);
+  return <Fragment></Fragment>;
 }
 
 export default App;
