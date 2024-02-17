@@ -11,7 +11,7 @@ interface IRating {
 
 
 export interface IProduct {
-    productId:string ; 
+    id:string ; 
     name:string ; 
     image:string [] ; 
     description:string ; 
