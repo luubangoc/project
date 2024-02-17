@@ -1,9 +1,38 @@
-import React from 'react'
+import React from "react";
 
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <div style={{ width: "100%" }}>
+      <div style={{ height: "50px", backgroundColor: "red" }}>
+        Lưu Bá Ngọc {/* Header (ngoc) */}
+      </div>
+      <div style={{ height: "50px", backgroundColor: "green" }}>
+        {" "}
+        Hùng Trần{/* Category (dùng chung) (Hung Tran) */}
+      </div>
+      <div style={{ height: "50px", backgroundColor: "yellow" }}>
+        {" "}
+        Hung Nguyen
+        {/* Feature collection (Hung NGuyen) */}
+      </div>
+      <div style={{ height: "50px", backgroundColor: "" }}>
+        {" "}
+        Của ai nhận đi !{/*Organic and safe clothes set for your baby  */}
+      </div>
+      <div style={{ height: "50px", backgroundColor: "yellow" }}>
+        {/* Popular products (Hung nguyen) */}
+      </div>
+      <div style={{ height: "50px", backgroundColor: "blue" }}>
+        {/* Tips and articles (phu)*/}
+      </div>
+      <div style={{ height: "50px", backgroundColor: "pink" }}>
+        {/* Our instagram (thuyet) */}
+      </div>
+      <div style={{ height: "50px", backgroundColor: "blue" }}>
+        {/* footer */}
+      </div>
+    </div>
+  );
+};
 
-export default Home
+export default Home;
