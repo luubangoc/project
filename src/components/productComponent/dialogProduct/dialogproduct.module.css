@@ -1,0 +1,11 @@
+.dialogContent {
+    margin: 20px 0px;
+    display: flex;
+    /* border: 1px solid blue; */
+    
+}
+
+.boxContent {
+    padding: 0 15px;
+    /* width: 450px; */
+}
