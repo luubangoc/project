@@ -2,11 +2,15 @@ import ListProductComponent from "./listProductComponent";
 import { Box, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../features/Redux/Store/store";
+import { ICategory, IListCategory } from "../../Types/models";
+import ListCategory from "./listCategory";
+import Navbar from "../../components/Header/Header";
 
 const Home = () => {
   const listProduct = useSelector(
-    (state: RootState) => state.reducer.productReducer.listProduct
+    (state: RootState) => state.reducer.productSlice.listProduct
   );
+
   const listNewProduct = listProduct.filter((item) =>
     item.state.includes("new")
   );
@@ -14,15 +18,23 @@ const Home = () => {
   const listPopularProduct = listProduct.filter((item) => item.buy > 50);
   console.log(listPopularProduct);
 
+  // category
+  const categories = useSelector(
+    (state: RootState) => state.reducer.categorySlice.categories
+  );
+  console.log(categories);
+
   return (
     <div style={{ width: "100%" }}>
+      <Navbar />
+
       <div style={{ height: "50px", backgroundColor: "red" }}>
         Lưu Bá Ngọc {/* Header (ngoc) */}
       </div>
-      <div style={{ height: "50px", backgroundColor: "green" }}>
-        {" "}
-        Hùng Trần{/* Category (dùng chung) (Hung Tran) */}
-      </div>
+      {/* category */}
+      <Box>
+        <ListCategory categories={categories} />
+      </Box>
 
       <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
