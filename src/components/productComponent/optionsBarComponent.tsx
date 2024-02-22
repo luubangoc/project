@@ -7,13 +7,12 @@ import { styled } from "@mui/material/styles";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import { useState } from "react";
 import DialogProductComponent from "./dialogProduct/dialogProductComponent";
-import { IProduct } from "../../Types/models";
 
-interface ProductItemProps {
-  productItem: IProduct;
-}
 
-const OptionsBarComponent = ({ productItem }: ProductItemProps) => {
+
+
+
+const OptionsBarComponent = () => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -63,11 +62,8 @@ const OptionsBarComponent = ({ productItem }: ProductItemProps) => {
           </IconButton>
         </BootstrapTooltip>
       </Card>
-      <DialogProductComponent
-        open={open}
-        onHandleClose={handleClose}
-        productItem={productItem}
-      ></DialogProductComponent>
+      <DialogProductComponent open={open} onHandleClose={handleClose} />
+   
     </>
   );
 };

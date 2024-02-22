@@ -30,13 +30,7 @@ const ContentProductComponent = ({ productItem }: ProductItemProps) => {
                 fontWeight="bold"
                 className="my-2"
             >
-                $
-                {productItem.discount !== 0
-                    ? (
-                        productItem.price -
-                        productItem.price * (productItem.discount / 100)
-                    ).toFixed(2)
-                    : productItem.price}
+                ${(productItem.price - productItem.price * (productItem.discount / 100)).toFixed(2)}
             </Typography>
         </Box>
     )

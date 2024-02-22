@@ -1,9 +1,3 @@
-interface ISize {
-    size:string ; 
-    quantity:number
-
-}
-
 interface IRating {
     rate:number ; 
     count:number ; 
@@ -17,7 +11,7 @@ export interface IProduct {
     description:string ; 
     price:number ; 
     categoryName:string ; 
-    sizeProduct: ISize [] ;
+    sizeProduct: string [] ;
     brand:string ; 
     color: string [] ; 
     discount:number ; 
