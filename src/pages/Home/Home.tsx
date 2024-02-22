@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../features/Redux/Store/store";
 import FeatureCollection from "./featureCollection";
 import PopularProducts from "./popularProducts";
-import Navbar from "../../components/Header/Header";
+import Navbar from "../../components/header/Header";
 import styles from "./home.module.css";
 
 const Home = () => {
@@ -27,10 +27,10 @@ const Home = () => {
       </div>
 
       <div className="my-5">
-        <Box alignContent="center" sx={{ marginTop: 10}}>
+        <Box alignContent="center" sx={{ marginTop: 10 }}>
           <FeatureCollection />
-          <Box sx={{ overflow:'hidden' }}>
-             <ListProductComponent listProduct={listNewProduct} />
+          <Box sx={{ overflow: "hidden" }}>
+            <ListProductComponent listProduct={listNewProduct} />
           </Box>
         </Box>
       </div>
@@ -41,10 +41,10 @@ const Home = () => {
       </div>
 
       <div className="my-5">
-        <Box alignContent="center" sx={{ marginTop: 10}} >
+        <Box alignContent="center" sx={{ marginTop: 10 }}>
           <PopularProducts />
-          <Box sx={{ overflow:'hidden' , paddingBottom:'30px' }}>
-             <ListProductComponent listProduct={listPopularProduct} />
+          <Box sx={{ overflow: "hidden", paddingBottom: "30px" }}>
+            <ListProductComponent listProduct={listPopularProduct} />
           </Box>
         </Box>
       </div>

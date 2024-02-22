@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Header/Header";
-import Home from "./pages/Home/Home";
-import Shop from "./pages/Shop/Shop";
+import Navbar from "./components/header/Header";
+import Home from "./pages/home/Home";
+import Shop from "./pages/shop/Shop";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { handleProductsFetchRequest } from "./features/Redux/Reducers/productSlice";
-import './App.css' ; 
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();

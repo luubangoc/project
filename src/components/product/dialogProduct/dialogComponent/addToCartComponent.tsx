@@ -1,7 +1,5 @@
-import { Box, Button, Grid, IconButton, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useState } from "react";
-import { Add, Remove } from "@mui/icons-material";
-import styles from "./dialogproduct.module.css";
 
 const AddToCartComponent = () => {
   const [quantity, setQuantity] = useState(1);
@@ -24,33 +22,44 @@ const AddToCartComponent = () => {
   };
   return (
     <>
-      <Box className="d-flex col-4 ">
+      <Box className="d-flex col-3">
         <span
-          className="input-group-text rounded-0 rounded-start w-25 align-items-center"
+          className="input-group-text rounded-0 rounded-start align-items-center"
           onClick={handleDecreaseQuantity}
+          style={{ width: "20px" }}
         >
           -
         </span>
         <input
           type="text"
-          className="form-control text-center rounded-0 w-25"
+          className="form-control text-center rounded-0"
           value={quantity}
           aria-label="Quantity"
           aria-describedby="decrement increment"
           onChange={handleQuantityChange}
+          style={{ width: "35px" }}
         />
         <span
-          className="input-group-text rounded-0 rounded-end w-25"
+          className="input-group-text rounded-0 rounded-end"
           onClick={handleIncreaseQuantity}
+          style={{ width: "20px" }}
         >
           +
         </span>
       </Box>
-      <Box className="col-6 d-flex">
-        <button type="button" className="btn btn-primary">
+      <Box className="d-flex col-9">
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          style={{ width: "106px" }}
+        >
           Add to cart
         </button>
-        <button type="button" className="btn btn-success">
+        <button
+          type="button"
+          className="btn btn-success"
+          style={{ width: "106px" }}
+        >
           Buy now
         </button>
       </Box>
@@ -59,3 +68,9 @@ const AddToCartComponent = () => {
 };
 
 export default AddToCartComponent;
+
+
+
+
+
+

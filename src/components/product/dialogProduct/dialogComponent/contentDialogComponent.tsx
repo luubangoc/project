@@ -8,9 +8,14 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useContext } from "react";
-import { ProductItemContext } from "../index";
+import { ProductItemContext } from "../../index";
 import ColorComponent from "./colorComponent";
 import AddToCartComponent from "./addToCartComponent";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TelegramIcon from "@mui/icons-material/Telegram";
 
 const ContentDialogComponent = () => {
   const productItem = useContext(ProductItemContext);
@@ -91,8 +96,24 @@ const ContentDialogComponent = () => {
             <ColorComponent />
           </Box>
         </Box>
-        <Box className="mb-3 d-flex row" alignItems="center">
+        <Box className="mb-3 py-4 d-flex row border-bottom" alignItems="center">
           <AddToCartComponent />
+        </Box>
+        <Box alignItems="center">
+          <Typography component="span" display="block" className="mb-2">
+            SKU:WD-0025
+          </Typography>
+          <Typography component="span" display="block" className="mb-2">
+            Category: {productItem.categoryName}
+          </Typography>
+          <Typography component="span" display="block" alignContent="center">
+            Share:
+            <FacebookIcon fontSize="small" className="mx-2" />
+            <TwitterIcon fontSize="small" className="me-2" />
+            <InstagramIcon fontSize="small" className="me-2" />
+            <LinkedInIcon fontSize="small" className="me-2" />
+            <TelegramIcon fontSize="small" className="me-2" />
+          </Typography>
         </Box>
       </Box>
     )
@@ -100,3 +121,6 @@ const ContentDialogComponent = () => {
 };
 
 export default ContentDialogComponent;
+
+
+
