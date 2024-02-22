@@ -35,5 +35,57 @@ const cartSlice = createSlice({
         state.listProductCart = newCart;
       }
     },
+    handleIncreaseQuantity: (state, payloadAction: PayloadAction<string>) => {
+      const newCart = state.listProductCart?.map((item) => {
+        if (item.product.id === payloadAction.payload) {
+          const newItem: IItemCart = {
+            product: item.product,
+            quantity: item.quantity + 1,
+          };
+          return newItem;
+        } else {
+          return item;
+        }
+      });
+      state.listProductCart = newCart;
+    },
+
+    handleReduceQuantity: (state, payloadAction: PayloadAction<string>) => {
+      const newCart = state.listProductCart
+        ?.map((item) => {
+          if (item.product.id === payloadAction.payload) {
+            const newItem: IItemCart = {
+              product: item.product,
+              quantity: item.quantity - 1,
+            };
+            return newItem;
+          } else {
+            return item;
+          }
+        })
+        .filter((item) => item.quantity > 0);
+      state.listProductCart = newCart;
+    },
+    handleDeleteProduct: (state, payloadAction: PayloadAction<string>) => {
+      const newCart = state.listProductCart.filter(
+        (item) => item.product.id !== payloadAction.payload
+      );
+
+      state.listProductCart = newCart;
+    },
+
+    handleClearCart: (state) => {
+      state.listProductCart = [];
+    },
   },
 });
+
+export const {
+  handleAddToCart,
+  handleIncreaseQuantity,
+  handleReduceQuantity,
+  handleDeleteProduct,
+  handleClearCart,
+} = cartSlice.actions;
+
+export default cartSlice.reducer;

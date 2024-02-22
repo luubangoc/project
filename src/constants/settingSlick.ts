@@ -3,9 +3,18 @@ export var settingSlickProduct = {
     infinite: false,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 4,
+    slidesToScroll: 5,
     initialSlide: 0,
     responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: true,
+          dots: true,
+        },
+      },
       {
         breakpoint: 1024,
         settings: {

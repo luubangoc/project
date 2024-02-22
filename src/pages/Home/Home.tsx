@@ -1,10 +1,13 @@
-import ListProductComponent from "./listProductComponent";
+import ListProductComponent from "./listProduct";
 import { Box, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../features/Redux/Store/store";
+
 import { ICategory, IListCategory } from "../../Types/models";
 import ListCategory from "./listCategory";
 import Navbar from "../../components/Header/Header";
+import FeatureCollection from "./featureCollection";
+import PopularProducts from "./popularProducts";
 
 const Home = () => {
   const listProduct = useSelector(
@@ -24,33 +27,29 @@ const Home = () => {
   );
   console.log(categories);
 
+  const cart = useSelector(
+    (state: RootState) => state.reducer.cartSlice.listProductCart
+  );
+  console.log(cart);
+
   return (
     <div style={{ width: "100%" }}>
       <Navbar />
 
       <div style={{ height: "50px", backgroundColor: "red" }}>
         Lưu Bá Ngọc {/* Header (ngoc) */}
+        <button>-</button>
+        <button>+</button>
       </div>
       {/* category */}
       <Box>
-        <ListCategory categories={categories} />
+        <ListCategory categories={categories} listProduct={listProduct} />
       </Box>
 
       <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
-          <Box display="flex" justifyContent="center">
-            <Typography component={"span"} align="center" color="primary">
-              Discover lots new products
-            </Typography>
-          </Box>
-          <Box display="flex" justifyContent="center" sx={{ margin: "20px 0" }}>
-            <Typography variant="h4" align="center" fontWeight="bold">
-              Feature collection
-            </Typography>
-          </Box>
-          <ListProductComponent
-            listProduct={listNewProduct}
-          ></ListProductComponent>
+          <FeatureCollection />
+          <ListProductComponent listProduct={listNewProduct} />
         </Box>
       </div>
 
@@ -61,19 +60,8 @@ const Home = () => {
 
       <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
-          <Box display="flex" justifyContent="center">
-            <Typography component={"span"} align="center" color="primary">
-              Hots and bestsellers on this week
-            </Typography>
-          </Box>
-          <Box display="flex" justifyContent="center" sx={{ margin: "20px 0" }}>
-            <Typography variant="h4" align="center" fontWeight="bold">
-              Popular products
-            </Typography>
-          </Box>
-          <ListProductComponent
-            listProduct={listPopularProduct}
-          ></ListProductComponent>
+          <PopularProducts />
+          <ListProductComponent listProduct={listPopularProduct} />
         </Box>
       </div>
 

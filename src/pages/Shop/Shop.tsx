@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { useLocation, useParams } from "react-router-dom";
 
 const Shop = () => {
-  return (
-    <div>Shop</div>
-  )
-}
+  const params = useParams();
+  const location = useLocation();
+  console.log(params, location);
 
-export default Shop
+  return <div>Shop</div>;
+};
+
+export default Shop;
