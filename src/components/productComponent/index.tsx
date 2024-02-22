@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import { IProduct } from "../../Types/models";
 import styles from "./product.module.css";
 import {
@@ -14,6 +14,9 @@ import ContentProductComponent from "./contentProductComponent";
 interface ProductItemProps {
   productItem: IProduct;
 }
+
+export const ProductItemContext = createContext<IProduct | undefined>(undefined) ; 
+
 const ProductItemComponent = ({ productItem }: ProductItemProps) => {
   const [hoverState, setHoverState] = useState<boolean>(false);
   const handleMouseEnter = () => {
@@ -24,7 +27,7 @@ const ProductItemComponent = ({ productItem }: ProductItemProps) => {
     setHoverState(false);
   };
   return (
-    <>
+    <ProductItemContext.Provider value={productItem}>
       <Grid
         item
         key={productItem.id}
@@ -47,7 +50,7 @@ const ProductItemComponent = ({ productItem }: ProductItemProps) => {
                     !hoverState ? styles.optionBar : styles.optionBarHover
                   }
                 >
-                  <OptionsBarComponent productItem={productItem} />
+                  <OptionsBarComponent />
                 </Grid>
               </Box>
             </Box>
@@ -57,7 +60,7 @@ const ProductItemComponent = ({ productItem }: ProductItemProps) => {
           </Card>
         </Box>
       </Grid>
-    </>
+    </ProductItemContext.Provider>
   );
 };
 

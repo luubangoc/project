@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../features/Redux/Store/store";
 import FeatureCollection from "./featureCollection";
 import PopularProducts from "./popularProducts";
+import Navbar from "../../components/Header/Header";
+import styles from "./home.module.css";
 
 const Home = () => {
   const listProduct = useSelector(
@@ -18,18 +20,18 @@ const Home = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      <div style={{ height: "50px", backgroundColor: "red" }}>
-        Lưu Bá Ngọc {/* Header (ngoc) */}
-      </div>
+      <Navbar />
       <div style={{ height: "50px", backgroundColor: "green" }}>
         {" "}
         Hùng Trần{/* Category (dùng chung) (Hung Tran) */}
       </div>
 
       <div className="my-5">
-        <Box alignContent="center" sx={{ marginTop: 10 }}>
+        <Box alignContent="center" sx={{ marginTop: 10}}>
           <FeatureCollection />
-          <ListProductComponent listProduct={listNewProduct} />
+          <Box sx={{ overflow:'hidden' }}>
+             <ListProductComponent listProduct={listNewProduct} />
+          </Box>
         </Box>
       </div>
 
@@ -39,9 +41,11 @@ const Home = () => {
       </div>
 
       <div className="my-5">
-        <Box alignContent="center" sx={{ marginTop: 10 }}>
+        <Box alignContent="center" sx={{ marginTop: 10}} >
           <PopularProducts />
-          <ListProductComponent listProduct={listPopularProduct} />
+          <Box sx={{ overflow:'hidden' , paddingBottom:'30px' }}>
+             <ListProductComponent listProduct={listPopularProduct} />
+          </Box>
         </Box>
       </div>
 
