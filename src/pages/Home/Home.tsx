@@ -1,11 +1,14 @@
 import React from "react";
+import Navbar from "../../components/Header/Header";
 
 const Home = () => {
   return (
     <div style={{ width: "100%" }}>
-      <div style={{ height: "50px", backgroundColor: "red" }}>
-        Lưu Bá Ngọc {/* Header (ngoc) */}
+      <div>
+      {/* <Navbar /> */}
+  
       </div>
+      
       <div style={{ height: "50px", backgroundColor: "green" }}>
         {" "}
         Hùng Trần{/* Category (dùng chung) (Hung Tran) */}

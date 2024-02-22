@@ -9,7 +9,7 @@ import Shop from './pages/Shop/Shop';
 function App() {
   return (
     <Router>
-      <Navbar />
+    <Navbar />
       <div className="container mt-5">
         <Routes>
           <Route path="/" element={<Home />} />

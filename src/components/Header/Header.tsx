@@ -10,55 +10,63 @@ import IconButton from "@mui/material/IconButton";
 
 const Navbar = () => {
     return (
-    <nav className="navbar navbar-light bg-light">
+    <nav className="navbar navbar-light bg-light nav-link">
         {/* 1 */}
-        <div className="container" style={{textAlign: "center"}}>
-             <NavLink to="/" className="navbar-brand">    
-                <h2>WoodMart.</h2> 
-                <p style={{fontSize: 15}}>Organic Baby Clothes</p>
+        <div className="container">
+             <NavLink to="/" className="navbar-brand position-absolute top-0 start-50 translate-middle-x">    
+             <img
+                  src="https://woodmart.xtemos.com/kids/wp-content/uploads/sites/13/2023/05/w-bcs-logo-black-l-1.svg"
+                  alt=""
+                />
              </NavLink>
         </div>
         <br /><br /><br />
 
         {/* 2 */}
         <div className="container">
-        <div>
-        <ul className="navbar-nav me-auto d-flex justify-content-end">
-        <li className="nav-item">
+
+        <div className="d-flex nav-tabs " >
+        
+        <div className="nav-item p-2 flex-fill" >
           <NavLink to="/" className="nav-link active" aria-current="page">
-          <span><IoMdHome /></span> Home Page
+            <IoMdHome /> Home Page
           </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink to="/about" className="nav-link">
-          <span><LuUsers /></span> About Us</NavLink>
-        </li>
-        <li className="nav-item">
+        </div>
+        <div className="nav-item p-2 flex-fill" >
+          <NavLink to="/about" className="nav-link ">
+            <LuUsers /> About Us
+          </NavLink>
+        </div>
+        <div className="nav-item p-2 flex-fill" >
           <NavLink to="/contact" className="nav-link">
-          <span><MdOutlineEmail /></span> Contact</NavLink>
-        </li>
-        <li className="nav-item">
+            <MdOutlineEmail /> Contact
+          </NavLink>
+        </div>
+        <div className="nav-item p-2 flex-fill">
             <NavLink to="/blog" className="nav-link">
-            <span><LuClipboardEdit /></span> Blog</NavLink>
-        </li>
-        </ul> 
+              <LuClipboardEdit /> Blog
+            </NavLink>
+        </div>
+        
         </div>
 
        {/* 3 */}
 
       <div>
-      <ul className="navbar-nav me-auto">
-        <li className="nav-item">
-             <NavLink to="/shop" className="nav-link">Shop</NavLink>
+      <ul className="navbar-nav me-auto nav-underline">
+        <li className="nav-item ">
+             <NavLink to="/shop" className="nav-link"><b>Shop</b></NavLink>
         </li>
         </ul>
         
       </div>
 
-      {/* 3 */}
-      <div>
-      <ul className="navbar-nav me-auto">
-        <li className="nav-item">
+
+      {/* 4 */}
+
+      <div className="d-flex justify-content-between">
+
+      <div className="nav-item p-2 flex-fill">
               {/* Search */}
              <NavLink to="/shop" className="nav-link" style={{fontSize: 25}}>
                 <Tooltip title="Search">
@@ -67,16 +75,11 @@ const Navbar = () => {
                   </IconButton> 
                 </Tooltip> 
               </NavLink>
-        </li>
-        </ul>
-        
-      </div>
+        </div>
 
-      {/* 4 */}
-
-      <div >
-      <ul className="navbar-nav me-auto">
-        <li className="nav-item">
+        <div>|</div>
+      
+        <div className="nav-item p-2 flex-fill">
               {/* My account */}
              <NavLink to="/shop" className="nav-link" style={{fontSize: 25}}>    
                   <Tooltip title="My account">
@@ -85,9 +88,9 @@ const Navbar = () => {
                     </IconButton>
                   </Tooltip>
               </NavLink>
-        </li>
+        </div>
 
-        <li className="nav-item">
+        <div className="nav-item p-2 flex-fill">
               {/* My withlist  */}
              <NavLink to="/shop" className="nav-link" style={{fontSize: 25}}>         
                 <Tooltip title="My withlist">
@@ -96,9 +99,9 @@ const Navbar = () => {
                   </IconButton>
                 </Tooltip>
               </NavLink>
-        </li>
+        </div>
 
-        <li className="nav-item">
+        <div className="nav-item p-2 flex-fill">
               {/* Shopping cart */}
              <NavLink to="/shop" className="nav-link" style={{fontSize: 25}}>            
                 <Tooltip title="Shopping cart">
@@ -107,11 +110,11 @@ const Navbar = () => {
                   </IconButton>
                 </Tooltip>
               </NavLink>
-        </li>
-        </ul>
+        </div>
+        
       </div>
     </div>
-    <hr />
+    
   </nav>
   
     );
