@@ -55,31 +55,28 @@ const ImageDialogComponent = () => {
 
   return (
     <div className={styles.slidercontainer}>
-     <Box className="my-2">
-      <Slider {...settings}>
-        {productItem &&
-          productItem.images.map((item, index) => (
-            <CardMedia
-              component="img"
-              image={item}
-              height="100%"
-              width="100%"
-              key={index}
-              className={styles.cardImage}
-            ></CardMedia>
-          ))}
-      </Slider>
-      <Box className={styles.viewDetail}>
-        <Typography align="center" margin="auto">
-          View details
-        </Typography>
-      </Box>
+      <Box className="my-2">
+        <Slider {...settings}>
+          {productItem &&
+            productItem.images.map((item, index) => (
+              <CardMedia
+                component="img"
+                image={item}
+                height="100%"
+                width="100%"
+                key={index}
+                className={styles.cardImage}
+              ></CardMedia>
+            ))}
+        </Slider>
+        <Box className={styles.viewDetail}>
+          <Typography align="center" margin="auto">
+            View details
+          </Typography>
+        </Box>
       </Box>
     </div>
   );
 };
 
 export default ImageDialogComponent;
-
-
-

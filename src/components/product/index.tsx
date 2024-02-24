@@ -6,6 +6,8 @@ import OptionsBarComponent from "./productComponent/optionsBarComponent";
 import StateProductComponent from "./productComponent/stateProductComponent";
 import ImageProductComponent from "./productComponent/imageProductComponent";
 import ContentProductComponent from "./productComponent/contentProductComponent";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+
 interface ProductItemProps {
   productItem: IProduct;
 }
@@ -15,6 +17,7 @@ export const ProductItemContext = createContext<IProduct | undefined>(
 );
 
 const ProductItemComponent = ({ productItem }: ProductItemProps) => {
+  
   const [hoverState, setHoverState] = useState<boolean>(false);
   const handleMouseEnter = () => {
     setHoverState(true);
@@ -23,6 +26,10 @@ const ProductItemComponent = ({ productItem }: ProductItemProps) => {
   const handleMouseLeave = () => {
     setHoverState(false);
   };
+
+ 
+
+
   return (
     <ProductItemContext.Provider value={productItem}>
       <Grid
@@ -31,6 +38,7 @@ const ProductItemComponent = ({ productItem }: ProductItemProps) => {
         sx={{ padding: 1.5 }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        
       >
         <Box>
           <Card>
@@ -39,7 +47,7 @@ const ProductItemComponent = ({ productItem }: ProductItemProps) => {
                 <StateProductComponent stateProduct={productItem.state} />
               </Box>
               <Box className={styles.productImageContainer}>
-                <ImageProductComponent
+                <ImageProductComponent 
                   hoverState={hoverState}
                   productItem={productItem}
                 />
@@ -65,6 +73,3 @@ const ProductItemComponent = ({ productItem }: ProductItemProps) => {
 };
 
 export default ProductItemComponent;
-
-
-
