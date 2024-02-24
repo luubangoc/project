@@ -68,9 +68,3 @@ const AddToCartComponent = () => {
 };
 
 export default AddToCartComponent;
-
-
-
-
-
-

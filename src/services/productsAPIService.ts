@@ -1,11 +1,12 @@
-import * as request from '../utils/configAPI' ; 
+import axios from "axios";
+import request from "../utils/configAPI";
 
-export const getProductsAPI = async ()=>{
-    try {
-        const response = await  request.getAPI("products") ; 
-        return response ; 
-    } catch (error) {
-        throw error ; 
-    }
-}
+export const getProductsAPI = async () => {
+  try {
+    const response = await request.get("products");
 
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
