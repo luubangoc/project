@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { handleProductsFetchRequest } from "./features/Redux/Reducers/productSlice";
 import "./App.css";
+import ProductItemComponent from "./components/product";
+import DetailProduct from "./pages/detailProduct/DetailProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,12 +16,14 @@ function App() {
   }, []);
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} /> */}
         <Route path="/shop" element={<Shop />} />
+        <Route path="/product/:id" element={<DetailProduct />}></Route>
       </Routes>
     </Router>
   );

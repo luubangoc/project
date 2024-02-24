@@ -51,7 +51,11 @@ const DialogProductComponent = ({ open, onHandleClose }: OpenProps) => {
           <CloseIcon />
         </IconButton>
         <DialogContent dividers className="row d-lg-flex pt-4 px-0 mx-1">
-          <Box className="col-12 col-lg-6 " display="flex" sx={{ height:'60%' }}>
+          <Box
+            className="col-12 col-lg-6 "
+            display="flex"
+            sx={{ height: "60%" }}
+          >
             <ImageDialogComponent />
           </Box>
           <Box className="col-12 col-lg-6" alignContent="center">
@@ -64,7 +68,3 @@ const DialogProductComponent = ({ open, onHandleClose }: OpenProps) => {
 };
 
 export default DialogProductComponent;
-
-
-
-

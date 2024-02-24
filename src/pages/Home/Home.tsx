@@ -6,6 +6,7 @@ import FeatureCollection from "./featureCollection";
 import PopularProducts from "./popularProducts";
 import Navbar from "../../components/header/Header";
 import styles from "./home.module.css";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   const listProduct = useSelector(
@@ -20,7 +21,6 @@ const Home = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      <Navbar />
       <div style={{ height: "50px", backgroundColor: "green" }}>
         {" "}
         Hùng Trần{/* Category (dùng chung) (Hung Tran) */}
@@ -58,7 +58,7 @@ const Home = () => {
       </div>
 
       <div style={{ height: "50px", backgroundColor: "blue" }}>
-        {/* footer */}
+        <Footer></Footer>
       </div>
     </div>
   );
