@@ -8,8 +8,14 @@ import ListCategory from "./listCategory";
 import Navbar from "../../components/Header/Header";
 import FeatureCollection from "./featureCollection";
 import PopularProducts from "./popularProducts";
+// import Navbar from "../../components/Header/Header";
+import styles from "./home.module.css";
+import { useEffect } from "react";
 
 const Home = () => {
+  const cart = useSelector(
+    (state: RootState) => state.reducer.cartSlice.listProductCart
+  );
   const listProduct = useSelector(
     (state: RootState) => state.reducer.productSlice.listProduct
   );
@@ -27,9 +33,6 @@ const Home = () => {
   );
   console.log(categories);
 
-  const cart = useSelector(
-    (state: RootState) => state.reducer.cartSlice.listProductCart
-  );
   console.log(cart);
 
   return (
@@ -46,10 +49,16 @@ const Home = () => {
         <ListCategory categories={categories} listProduct={listProduct} />
       </Box>
 
+      <div style={{ height: "50px", backgroundColor: "green" }}>
+        {" "}
+        Hùng Trần{/* Category (dùng chung) (Hung Tran) */}
+      </div>
       <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
           <FeatureCollection />
-          <ListProductComponent listProduct={listNewProduct} />
+          <Box sx={{ overflow: "hidden" }}>
+            <ListProductComponent listProduct={listNewProduct} />
+          </Box>
         </Box>
       </div>
 
@@ -61,7 +70,9 @@ const Home = () => {
       <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
           <PopularProducts />
-          <ListProductComponent listProduct={listPopularProduct} />
+          <Box sx={{ overflow: "hidden", paddingBottom: "30px" }}>
+            <ListProductComponent listProduct={listPopularProduct} />
+          </Box>
         </Box>
       </div>
 

@@ -123,6 +123,9 @@ const Navbar = () => {
                 </Tooltip>
               </NavLink>
             </li>
+            <li>
+              <NavLink to={"/cart"}>cart</NavLink>
+            </li>
           </ul>
         </div>
       </div>

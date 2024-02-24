@@ -1,30 +1,45 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IItemCart, IProduct } from "../../../Types/models";
+import { IProduct, IProductCart } from "../../../Types/models";
 
 interface InitialState {
-  listProductCart: IItemCart[];
+  listProductCart: IProductCart[];
 }
 
 const initialState: InitialState = {
   listProductCart: [],
 };
 
+export interface IItemCart {
+  id: any;
+  size: any;
+  color: any;
+}
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialState,
   reducers: {
-    handleAddToCart: (state, payloadAction: PayloadAction<IItemCart>) => {
+    handleAddToCart: (state, payloadAction: PayloadAction<IProductCart>) => {
       const filterItem = state.listProductCart.filter(
-        (item) => item.product.id === payloadAction.payload.product.id
+        (item) =>
+          item.id === payloadAction.payload.id &&
+          item.color === payloadAction.payload.color &&
+          item.size === payloadAction.payload.size
       );
       if (filterItem.length > 0) {
         const newCart = state.listProductCart.map((item) => {
-          if (item.product.id === payloadAction.payload.product.id) {
-            const newItem: IItemCart = {
-              product: item.product,
-              quantity: item.quantity + payloadAction.payload.quantity,
-            };
-            return newItem;
+          if (
+            item.id === payloadAction.payload.id &&
+            item.color === payloadAction.payload.color &&
+            item.size === payloadAction.payload.size
+          ) {
+            {
+              const newItem: IProductCart = {
+                ...item,
+                quantity: item.quantity + payloadAction.payload.quantity,
+              };
+              return newItem;
+            }
           } else {
             return item;
           }
@@ -35,11 +50,18 @@ const cartSlice = createSlice({
         state.listProductCart = newCart;
       }
     },
-    handleIncreaseQuantity: (state, payloadAction: PayloadAction<string>) => {
+    handleIncreaseQuantity: (
+      state,
+      payloadAction: PayloadAction<IItemCart>
+    ) => {
       const newCart = state.listProductCart?.map((item) => {
-        if (item.product.id === payloadAction.payload) {
-          const newItem: IItemCart = {
-            product: item.product,
+        if (
+          item.id === payloadAction.payload.id &&
+          item.color === payloadAction.payload.color &&
+          item.size === payloadAction.payload.size
+        ) {
+          const newItem: IProductCart = {
+            ...item,
             quantity: item.quantity + 1,
           };
           return newItem;
@@ -50,12 +72,16 @@ const cartSlice = createSlice({
       state.listProductCart = newCart;
     },
 
-    handleReduceQuantity: (state, payloadAction: PayloadAction<string>) => {
+    handleReduceQuantity: (state, payloadAction: PayloadAction<IItemCart>) => {
       const newCart = state.listProductCart
         ?.map((item) => {
-          if (item.product.id === payloadAction.payload) {
-            const newItem: IItemCart = {
-              product: item.product,
+          if (
+            item.id === payloadAction.payload.id &&
+            item.color === payloadAction.payload.color &&
+            item.size === payloadAction.payload.size
+          ) {
+            const newItem: IProductCart = {
+              ...item,
               quantity: item.quantity - 1,
             };
             return newItem;
@@ -66,9 +92,12 @@ const cartSlice = createSlice({
         .filter((item) => item.quantity > 0);
       state.listProductCart = newCart;
     },
-    handleDeleteProduct: (state, payloadAction: PayloadAction<string>) => {
+    handleDeleteProduct: (state, payloadAction: PayloadAction<IItemCart>) => {
       const newCart = state.listProductCart.filter(
-        (item) => item.product.id !== payloadAction.payload
+        (item) =>
+          item.id !== payloadAction.payload.id &&
+          item.color !== payloadAction.payload.color &&
+          item.size !== payloadAction.payload.size
       );
 
       state.listProductCart = newCart;

@@ -1,8 +1,3 @@
-interface ISize {
-  size: string;
-  quantity: number;
-}
-
 interface IRating {
   rate: number;
   count: number;
@@ -15,7 +10,7 @@ export interface IProduct {
   description: string;
   price: number;
   categoryName: string;
-  sizeProduct: ISize[];
+  sizeProduct: string[];
   brand: string;
   color: string[];
   discount: number;
@@ -42,4 +37,17 @@ export interface IListCategory {
 export interface IItemCart {
   product: IProduct;
   quantity: number;
+}
+
+export interface IProductCart {
+  id: string;
+  size: string;
+  color: string;
+  quantity: number;
+}
+
+export interface IItemCart {
+  id: string;
+  size: string;
+  color: string;
 }
