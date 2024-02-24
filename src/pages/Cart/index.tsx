@@ -104,7 +104,11 @@ const index = () => {
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
-                        <img src={item.images[0]} alt="" />
+                        <img
+                          src={item.images[0]}
+                          alt=""
+                          style={{ width: "50px" }}
+                        />
                       </TableCell>
                       <TableCell align="right">{item.name}</TableCell>
                       <TableCell align="right">{item.price}</TableCell>

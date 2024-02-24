@@ -1,12 +1,12 @@
 import { Box, CardMedia, Typography } from "@mui/material";
 import { useContext } from "react";
 import Slider from "react-slick";
-import { ProductItemContext } from "../../index";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from "./dialogproduct.module.css";
+import styles from "../dialogproduct.module.css";
+import { ProductItemContext } from "../../index";
 
 const PrevArrow = (props: any) => {
   const { onClick, currentSlide } = props;

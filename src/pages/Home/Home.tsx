@@ -8,7 +8,6 @@ import ListCategory from "./listCategory";
 import Navbar from "../../components/Header/Header";
 import FeatureCollection from "./featureCollection";
 import PopularProducts from "./popularProducts";
-// import Navbar from "../../components/Header/Header";
 import styles from "./home.module.css";
 import { useEffect } from "react";
 

@@ -2,10 +2,11 @@ import React, { createContext, useState } from "react";
 import { IProduct } from "../../Types/models";
 import styles from "./product.module.css";
 import { Box, Card, CardContent, Grid } from "@mui/material";
-import OptionsBarComponent from "./optionsBarComponent";
-import StateProductComponent from "./stateProductComponent";
-import ImageProductComponent from "./imageProductComponent";
-import ContentProductComponent from "./contentProductComponent";
+import StateProductComponent from "./productComponent/stateProductComponent";
+import OptionsBarComponent from "./productComponent/optionsBarComponent";
+import ContentProductComponent from "./productComponent/contentProductComponent";
+import ImageProductComponent from "./productComponent/imageProductComponent";
+
 interface ProductItemProps {
   productItem: IProduct;
 }

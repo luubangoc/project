@@ -1,13 +1,10 @@
 import { Box, Chip } from "@mui/material";
-import React, { useContext, useState } from "react";
-import { Colors } from "../../../../constants/color";
+import { useContext, useState } from "react";
 import { ProductItemContext } from "../../index";
+import { Colors } from "../../../../constants/color";
 type ColorType = keyof typeof Colors;
 
-interface IColorComponent {
-  handleColor: (value: string) => void;
-}
-const ColorComponent = ({ handleColor }: IColorComponent) => {
+const ColorComponent = () => {
   const productItem = useContext(ProductItemContext);
   const [activeColor, setActiveColor] = useState<string>(
     productItem ? productItem.color[0] : ""
@@ -15,13 +12,12 @@ const ColorComponent = ({ handleColor }: IColorComponent) => {
   const handleClickColor = (color: string) => {
     console.log(color);
     setActiveColor(color);
-    handleColor(activeColor);
   };
 
   console.log(activeColor);
   return (
     productItem && (
-      <Box className="d-flex" key={productItem.id}>
+      <Box className="d-flex">
         {productItem.color.map((color: string, index: number) => {
           const colorKey = color as ColorType;
           return (

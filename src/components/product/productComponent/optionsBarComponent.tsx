@@ -6,14 +6,15 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { styled } from "@mui/material/styles";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import { useState } from "react";
-import DialogProductComponent from "./dialogProduct";
-import { IProduct } from "../../Types/models";
 import { useDispatch } from "react-redux";
-import { handleAddToCart } from "../../features/Redux/Reducers/cartSlice";
+import { IProduct } from "../../../Types/models";
+import { handleAddToCart } from "../../../features/Redux/Reducers/cartSlice";
+import DialogProductComponent from "../dialogProduct";
 
 interface IOp {
   productItem: IProduct;
 }
+
 const OptionsBarComponent = ({ productItem }: IOp) => {
   const [open, setOpen] = useState(false);
 
