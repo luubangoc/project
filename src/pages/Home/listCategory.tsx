@@ -32,9 +32,9 @@ const ListCategory = ({ categories, listProduct }: IListCategory) => {
               src={category.image}
               sx={{ height: "100%", width: "100%" }}
             ></Avatar>
-            <Box sx={{}}>
+            {/* <Box sx={{}}>
               <Typography>{category.name}</Typography>
-            </Box>
+            </Box> */}
           </Grid>
         ))}
       </Grid>

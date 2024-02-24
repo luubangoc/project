@@ -6,7 +6,6 @@ import StateProductComponent from "./productComponent/stateProductComponent";
 import OptionsBarComponent from "./productComponent/optionsBarComponent";
 import ContentProductComponent from "./productComponent/contentProductComponent";
 import ImageProductComponent from "./productComponent/imageProductComponent";
-
 interface ProductItemProps {
   productItem: IProduct;
 }
@@ -24,6 +23,7 @@ const ProductItemComponent = ({ productItem }: ProductItemProps) => {
   const handleMouseLeave = () => {
     setHoverState(false);
   };
+
   return (
     <ProductItemContext.Provider value={productItem}>
       <Grid

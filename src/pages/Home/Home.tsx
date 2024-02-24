@@ -9,7 +9,7 @@ import Navbar from "../../components/Header/Header";
 import FeatureCollection from "./featureCollection";
 import PopularProducts from "./popularProducts";
 import styles from "./home.module.css";
-import { useEffect } from "react";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   const cart = useSelector(
@@ -37,21 +37,9 @@ const Home = () => {
   return (
     <div style={{ width: "100%" }}>
       <Navbar />
-
-      <div style={{ height: "50px", backgroundColor: "red" }}>
-        Lưu Bá Ngọc {/* Header (ngoc) */}
-        <button>-</button>
-        <button>+</button>
-      </div>
-      {/* category */}
-      <Box>
-        <ListCategory categories={categories} listProduct={listProduct} />
-      </Box>
-
-      <div style={{ height: "50px", backgroundColor: "green" }}>
-        {" "}
-        Hùng Trần{/* Category (dùng chung) (Hung Tran) */}
-      </div>
+      {/* <div style={{ height: "50px", backgroundColor: "green" }}> */}{" "}
+      <ListCategory categories={categories} listProduct={listProduct} />
+      {/* </div> */}
       <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
           <FeatureCollection />
@@ -60,12 +48,10 @@ const Home = () => {
           </Box>
         </Box>
       </div>
-
       <div style={{ height: "50px", backgroundColor: "white" }}>
         {" "}
         Của ai nhận đi !{/*Organic and safe clothes set for your baby  */}
       </div>
-
       <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
           <PopularProducts />
@@ -74,17 +60,14 @@ const Home = () => {
           </Box>
         </Box>
       </div>
-
       <div style={{ height: "50px", backgroundColor: "blue" }}>
         {/* Tips and articles (phu)*/}
       </div>
-
       <div style={{ height: "50px", backgroundColor: "pink" }}>
         {/* Our instagram (thuyet) */}
       </div>
-
       <div style={{ height: "50px", backgroundColor: "blue" }}>
-        {/* footer */}
+        <Footer></Footer>
       </div>
     </div>
   );

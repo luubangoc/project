@@ -1,14 +1,24 @@
 import React from "react";
 import { IProduct } from "../../../Types/models";
 import { Box, Rating, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface ProductItemProps {
   productItem: IProduct;
 }
 
 const ContentProductComponent = ({ productItem }: ProductItemProps) => {
+  const navigate = useNavigate();
+  const handleClick = (productItem: IProduct) => {
+    navigate(`/product/${productItem.id}`, { state: productItem });
+  };
   return (
-    <Box display="flex" justifyContent="center" flexDirection="column">
+    <Box
+      display="flex"
+      justifyContent="center"
+      flexDirection="column"
+      onClick={() => handleClick(productItem)}
+    >
       <Typography component="span" align="center">
         {productItem.name}
       </Typography>

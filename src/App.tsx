@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { handleProductsFetchRequest } from "./features/Redux/Reducers/productSlice";
 import "./App.css";
 import { handleGetCategories } from "./features/Redux/Reducers/categorySlice";
+import DetailProduct from "./pages/detailProduct/DetailProduct";
 import Cart from "./pages/Cart";
 
 function App() {
@@ -21,17 +22,15 @@ function App() {
     dispatch(handleGetCategories());
   }, []);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/about" element={<About />} />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      {/* <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} /> */}
-        {/* <Route path="/shop" element={<Shop />} /> */}
-        <Route path="/category/:name" element={<Shop />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
-    </BrowserRouter>
+      <Route path="/shop" element={<Shop />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/product/:id" element={<DetailProduct />} />
+    </Routes>
   );
 }
 
