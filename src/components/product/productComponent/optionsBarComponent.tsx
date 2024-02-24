@@ -6,11 +6,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { styled } from "@mui/material/styles";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import { useState } from "react";
-import DialogProductComponent from "./dialogProduct/dialogProductComponent";
-
-
-
-
+import DialogProductComponent from "../dialogProduct";
 
 const OptionsBarComponent = () => {
   const [open, setOpen] = useState(false);
@@ -63,7 +59,6 @@ const OptionsBarComponent = () => {
         </BootstrapTooltip>
       </Card>
       <DialogProductComponent open={open} onHandleClose={handleClose} />
-   
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { Box, Chip } from "@mui/material";
-import React, { useContext, useState } from "react";
-import { Colors } from "../../../constants/color";
-import { ProductItemContext } from "../index";
+import { useContext, useState } from "react";
+import { ProductItemContext } from "../../index";
+import { Colors } from "../../../../constants/color";
 type ColorType = keyof typeof Colors;
 
 const ColorComponent = () => {
@@ -21,7 +21,7 @@ const ColorComponent = () => {
         {productItem.color.map((color: string, index: number) => {
           const colorKey = color as ColorType;
           return (
-            <Box className={activeColor===color?'border-bottom border-2 border-secondary ms-3':'ms-3'}>
+            <Box key={index} className={activeColor===color?'border-bottom border-2 border-secondary ms-3':'ms-3'}>
                 <Chip
                 key={index}
                 onClick={() => handleClickColor(color)}
@@ -41,3 +41,6 @@ const ColorComponent = () => {
 };
 
 export default ColorComponent;
+
+
+

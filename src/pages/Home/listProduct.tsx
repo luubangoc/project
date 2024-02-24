@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { settingSlickProduct } from "../../constants/settingSlick";
-import ProductItemComponent from "../../components/productComponent";
+import ProductItemComponent from "../../components/product";
 
 const ListProductComponent = ({ listProduct }: IListProduct) => {
   var settings = settingSlickProduct;

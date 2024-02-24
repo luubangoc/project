@@ -4,11 +4,9 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, Button, CardMedia, DialogTitle, Typography } from "@mui/material";
-import { IProduct } from "../../../Types/models";
-import styles from "./dialogproduct.module.css";
-import ImageDialogComponent from "./imageDialogComponent";
-import ContentDialogComponent from "./contentDialogComponent";
+import { Box } from "@mui/material";
+import ImageDialogComponent from "./dialogComponent/imageDialogComponent";
+import ContentDialogComponent from "./dialogComponent/contentDialogComponent";
 
 interface OpenProps {
   open: boolean;
@@ -16,7 +14,6 @@ interface OpenProps {
 }
 
 const DialogProductComponent = ({ open, onHandleClose }: OpenProps) => {
-  
   const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     "& .MuiDialogContent-root": {
       padding: theme.spacing(2),
@@ -35,7 +32,7 @@ const DialogProductComponent = ({ open, onHandleClose }: OpenProps) => {
         PaperProps={{
           sx: {
             maxWidth: "70%",
-            maxHeight: "100%",
+            maxHeight: "90%",
             borderRadius: "10px",
           },
         }}
@@ -45,18 +42,19 @@ const DialogProductComponent = ({ open, onHandleClose }: OpenProps) => {
           onClick={() => onHandleClose(false)}
           sx={{
             position: "absolute",
-            right: 8,
-            top: 8,
+            right: 15,
+            top: 5,
             color: (theme) => theme.palette.grey[500],
+            zIndex: 1,
           }}
         >
           <CloseIcon />
         </IconButton>
-        <DialogContent dividers className="row d-sm-flex pt-4 px-0 mx-1">
-          <Box className="col-12 col-sm-6 " alignItems='center' display='flex'>
+        <DialogContent dividers className="row d-lg-flex pt-4 px-0 mx-1">
+          <Box className="col-12 col-lg-6 " display="flex" sx={{ height:'60%' }}>
             <ImageDialogComponent />
           </Box>
-          <Box className="col-12 col-sm-6 " alignContent='center'>
+          <Box className="col-12 col-lg-6" alignContent="center">
             <ContentDialogComponent />
           </Box>
         </DialogContent>
@@ -66,3 +64,7 @@ const DialogProductComponent = ({ open, onHandleClose }: OpenProps) => {
 };
 
 export default DialogProductComponent;
+
+
+
+
