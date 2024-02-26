@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IProduct, IProductCart } from "../../../Types/models";
+import { IProductCart } from "../../../Types/models";
 
 interface InitialState {
   listProductCart: IProductCart[];
@@ -95,8 +95,8 @@ const cartSlice = createSlice({
     handleDeleteProduct: (state, payloadAction: PayloadAction<IItemCart>) => {
       const newCart = state.listProductCart.filter(
         (item) =>
-          item.id !== payloadAction.payload.id &&
-          item.color !== payloadAction.payload.color &&
+          item.id !== payloadAction.payload.id ||
+          item.color !== payloadAction.payload.color ||
           item.size !== payloadAction.payload.size
       );
 
@@ -106,6 +106,8 @@ const cartSlice = createSlice({
     handleClearCart: (state) => {
       state.listProductCart = [];
     },
+
+    
   },
 });
 
