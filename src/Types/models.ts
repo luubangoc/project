@@ -18,6 +18,7 @@ export interface IProduct {
     rating: IRating ;
     state:string [] ; 
     buy:number ; 
+    quantityProduct:number;
 }
 
 export interface IListProduct {

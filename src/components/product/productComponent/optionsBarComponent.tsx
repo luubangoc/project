@@ -17,6 +17,7 @@ const OptionsBarComponent = () => {
   const handleClose = (open: boolean) => {
     setOpen(open);
   };
+
   const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -30,7 +31,7 @@ const OptionsBarComponent = () => {
   return (
     <>
       <Card className="w-75 mx-auto d-flex justify-content-center rounded ">
-        <BootstrapTooltip title="Add to Cart" placement="top">
+        <BootstrapTooltip title="Add to Cart" placement="top" >
           <IconButton>
             <ShoppingCartOutlinedIcon />
           </IconButton>

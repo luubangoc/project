@@ -65,6 +65,3 @@ const ProductItemComponent = ({ productItem }: ProductItemProps) => {
 };
 
 export default ProductItemComponent;
-
-
-
