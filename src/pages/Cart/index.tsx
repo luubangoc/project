@@ -42,24 +42,21 @@ const index = () => {
   );
   const [newCart, setNewCart] = useState([]);
   useEffect(() => {
-    setNewCart((prev: any) => {
-      // let listCart = [...prev];
-      const result = cart.map((item) => {
-        let newItem;
-        listProduct.forEach((product) => {
-          if (product.id === item.id) {
-            newItem = {
-              ...product,
-              ...item,
-            };
-            return newItem;
-          }
-        });
-        return newItem;
+    const result = cart.map((item) => {
+      let newItem;
+      listProduct.forEach((product) => {
+        if (product.id === item.id) {
+          newItem = {
+            ...product,
+            ...item,
+          };
+          return newItem;
+        }
       });
-      const listCart = [...result];
-      return listCart;
+      return newItem;
     });
+    const listCart: any = [...result];
+    setNewCart(listCart);
     console.log(newCart);
   }, [cart]);
   console.log(cart);

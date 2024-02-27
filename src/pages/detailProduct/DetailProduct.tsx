@@ -19,6 +19,8 @@ import styles from "../detailProduct/detailProduct.module.css";
 import { IoMdHome } from "react-icons/io";
 import { FaShoppingBag } from "react-icons/fa";
 import { FaRegUser, FaSearch } from "react-icons/fa";
+import Review from "./components/Review";
+import RelatedProduct from "./components/RelatedProduct";
 
 const PrevArrow = (props: any) => {
   const { onClick, currentSlide } = props;
@@ -196,6 +198,8 @@ const DetailProduct = () => {
           </Box>
         </div>
       </Box>
+      <Review idProduct={location.state.id} />
+      <RelatedProduct category={location.state.categoryName} />
     </Fragment>
   );
 };

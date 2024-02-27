@@ -5,6 +5,9 @@ import createSagaMiddleware from "redux-saga";
 import rootSaga from "../Saga/rootSaga";
 import categorySlice from "../Reducers/categorySlice";
 import cartSlice from "../Reducers/cartSlice";
+import loginSlice from "../Reducers/loginSlice";
+import reviewSlice from "../Reducers/reviewSlice";
+import pucharseSlice from "../Reducers/pucharseSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -12,6 +15,9 @@ const rootReducer = combineReducers({
   categorySlice,
   productSlice,
   cartSlice,
+  loginSlice,
+  reviewSlice,
+  pucharseSlice,
 });
 
 export const store = configureStore({

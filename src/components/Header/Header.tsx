@@ -1,12 +1,28 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { MdOutlineEmail } from "react-icons/md";
 import { IoIosHeartEmpty, IoMdHome } from "react-icons/io";
 import { LuClipboardEdit, LuUsers } from "react-icons/lu";
 import { FaRegUser, FaSearch, FaShoppingBag } from "react-icons/fa";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  handleLogout,
+  handlegetCloseLogin,
+  handlegetOpenLogin,
+} from "../../features/Redux/Reducers/loginSlice";
+import styles from "./Header.module.css";
+import { RootState } from "../../features/Redux/Store/store";
 const Navbar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userLogin = useSelector(
+    (state: RootState) => state.reducer.loginSlice.user
+  );
+
+  const handleNavigatePucharse = () => {
+    navigate("/pucharse");
+  };
   return (
     <nav className="navbar navbar-light bg-light">
       {/* 1 */}
@@ -91,15 +107,36 @@ const Navbar = () => {
 
         <div>
           <ul className="navbar-nav me-auto">
-            <li className="nav-item">
+            <li
+              className={`${
+                userLogin.id ? styles.headernavbaruser : ""
+              } + nav-item`}
+              onClick={() => dispatch(handlegetOpenLogin())}
+            >
               {/* My account */}
-              <NavLink to="/shop" className="nav-link" style={{ fontSize: 25 }}>
-                <Tooltip title="My account">
-                  <IconButton>
-                    <FaRegUser />
-                  </IconButton>
-                </Tooltip>
-              </NavLink>
+              {/* <NavLink to="/shop" className="nav-link" style={{ fontSize: 25 }}> */}
+              <Tooltip title="My account">
+                <IconButton>
+                  <FaRegUser />
+                </IconButton>
+              </Tooltip>
+              {/* </NavLink> */}
+
+              <ul className={styles.headernavbarusermenu}>
+                <li className={styles.headernavbaruseritem}>
+                  <p onClick={handleNavigatePucharse}>Pucharse</p>
+                </li>
+                <li className={styles.headernavbaruseritem}>
+                  <p
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      dispatch(handleLogout());
+                    }}
+                  >
+                    Logout
+                  </p>
+                </li>
+              </ul>
             </li>
 
             <li className="nav-item">

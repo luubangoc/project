@@ -10,6 +10,7 @@ import FeatureCollection from "./featureCollection";
 import PopularProducts from "./popularProducts";
 import styles from "./home.module.css";
 import Footer from "../../components/Footer/Footer";
+import Login from "../../components/Login";
 
 const Home = () => {
   const cart = useSelector(
@@ -34,9 +35,14 @@ const Home = () => {
 
   console.log(cart);
 
+  const userLogin = useSelector(
+    (state: RootState) => state.reducer.loginSlice.user
+  );
+  console.log(userLogin);
   return (
     <div style={{ width: "100%" }}>
       <Navbar />
+      <Login />
       {/* <div style={{ height: "50px", backgroundColor: "green" }}> */}{" "}
       <ListCategory categories={categories} listProduct={listProduct} />
       {/* </div> */}

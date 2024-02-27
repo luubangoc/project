@@ -51,3 +51,36 @@ export interface IItemCart {
   size: string;
   color: string;
 }
+
+// Login
+export interface IUserLogin {
+  id: string;
+  username: string;
+  password: string;
+}
+
+// reviews
+export interface IReview {
+  id: string;
+  userId: string;
+  productId: string;
+  rating: number;
+  date: string;
+  comment: string;
+}
+
+// pucharse
+export interface IPucharse {
+  id: string;
+  userId: string;
+  productsOrder: {
+    productId: string;
+    quantityOrder: number;
+    size: string;
+    color: string;
+    price: number;
+  }[];
+  totalPrice: number;
+  totalQuantityOrder: number;
+  date: string;
+}
