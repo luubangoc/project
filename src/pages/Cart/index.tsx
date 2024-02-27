@@ -29,6 +29,8 @@ import {
 import { useDispatch } from "react-redux";
 import styles from "./Cart.module.css";
 import { IProductCart } from "../../Types/models";
+import { useNavigate } from "react-router-dom";
+import NavShop from "../../components/navShop";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -40,23 +42,23 @@ const Cart = () => {
   );
   const [newCart, setNewCart] = useState([]);
   useEffect(() => {
-    setNewCart((_prev: IProductCart[]) => {
-      const result = cart.map((item) => {
-        let newItem: IProductCart | undefined;
-        listProduct.forEach((product) => {
-          if (product.id === item.id) {
-            newItem = {
-              ...product,
-              ...item,
-            };
-            return newItem;
-          }
-        });
-        return newItem;
+    const result = cart.map((item) => {
+      let newItem: IProductCart | undefined;
+      listProduct.forEach((product) => {
+        if (product.id === item.id) {
+          newItem = {
+            ...product,
+            ...item,
+          };
+          return newItem;
+        }
       });
-      const listCart = result.filter((item) => item !== undefined) as IProductCart[];
-      return listCart;
+      return newItem;
     });
+    const listCart: any = result.filter(
+      (item) => item !== undefined
+    ) as IProductCart[];
+    setNewCart(listCart);
   }, [cart]);
 
   const sumTotal = newCart?.reduce((total, item: any) => {
@@ -71,28 +73,22 @@ const Cart = () => {
     setShippingOption(event.target.value);
   };
 
+  const navigate = useNavigate();
+  const handleCheckout = () => {
+    navigate("/checkout");
+  };
+
   return (
     <Box>
       <Navbar />
-      <Stack
-        className={styles.title}
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        spacing={2}
-      >
-        <h5>SHOPPING CART </h5>
-        <i className="fa-solid fa-arrow-right"></i>
-        <h5>CHECKOUT</h5>
-        <i className="fa-solid fa-arrow-right"></i>
-        <h5>ORDER COMPLETE</h5>
-      </Stack>
+      <NavShop />
       <Grid container>
         <Grid item xs={12} md={8}>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
+                  <TableCell></TableCell>
                   <TableCell></TableCell>
                   <TableCell>PRODUCT</TableCell>
                   <TableCell>COLOR</TableCell>
@@ -109,13 +105,15 @@ const Cart = () => {
                       key={item.id}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
-                      <TableCell component="th" scope="row">
+                      <TableCell align="right">
                         <span className={styles.deleteIcon}>
                           <i
                             onClick={() => dispatch(handleDeleteProduct(item))}
                             className="fa-solid fa-xmark mx-2"
                           ></i>
                         </span>
+                      </TableCell>
+                      <TableCell component="th" scope="row">
                         <img
                           src={item.images[0]}
                           alt=""
@@ -256,11 +254,15 @@ const Cart = () => {
                   variant="h6"
                   className="text-primary mx-4"
                   align="right"
-                >${sumTotalFixed}</Typography>
+                >
+                  ${sumTotalFixed}
+                </Typography>
               </Grid>
             </Grid>
             <Grid container>
-              <Button variant="contained">Proceed to checkout</Button>
+              <button onClick={handleCheckout} className="btn btn-primary">
+                Proceed to checkout
+              </button>
             </Grid>
           </article>
         </Grid>

@@ -36,8 +36,8 @@ const ShoppingCart: React.FC<IShoppingCartProps> = ({
 
   const [newProducts, setNewProducts] = useState<never[]>([]);
   useEffect(() => {
-    setNewProducts((_prev: never[]) => {
-      const result = products.map((item) => {
+    const result: any = products
+      .map((item) => {
         let newItem: any;
         listProduct.forEach((product) => {
           if (product.id === item.id) {
@@ -46,15 +46,15 @@ const ShoppingCart: React.FC<IShoppingCartProps> = ({
           }
         });
         return newItem;
-      });
-      return result.filter((item) => item);
-    });
+      })
+      .filter((item) => item);
+    setNewProducts(result);
   }, [products, listProduct]);
 
   const totalPrice = newProducts.reduce((total, product: any) => {
-    return total + product.price * product.quantity * product.discount / 100;
+    return total + (product.price * product.quantity * product.discount) / 100;
   }, 0);
-  const totalPriceFixed = totalPrice.toFixed(2)
+  const totalPriceFixed = totalPrice.toFixed(2);
 
   return (
     <Drawer anchor="right" open={isOpen} onClose={onClose}>
@@ -78,7 +78,9 @@ const ShoppingCart: React.FC<IShoppingCartProps> = ({
                 >{`${product.name} - ${product.size} - months, ${product.color}`}</p>
                 <p className={styles.quantity}>
                   {`${product.quantity} x`}
-                  <span className={styles.price}>{` $${product.price*product.discount/100}`}</span>
+                  <span className={styles.price}>{` $${
+                    (product.price * product.discount) / 100
+                  }`}</span>
                 </p>
               </Grid>
               <Grid xs={1}>
