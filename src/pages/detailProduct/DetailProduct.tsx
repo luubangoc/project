@@ -1,10 +1,14 @@
 import {
-  Badge,
   Box,
   CardMedia,
-  IconButton,
+  Chip,
+  FormControl,
+  Grid,
+  MenuItem,
   Rating,
-  Tooltip,
+  Select,
+  SelectChangeEvent,
+  TableContainer,
   Typography,
 } from "@mui/material";
 import { Fragment, useContext, useState } from "react";
@@ -16,12 +20,27 @@ import "slick-carousel/slick/slick-theme.css";
 import { ProductItemContext } from "../../components/product";
 import { NavLink, useLocation, useParams } from "react-router-dom";
 import styles from "../detailProduct/detailProduct.module.css";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { IoMdHome } from "react-icons/io";
 import { FaShoppingBag } from "react-icons/fa";
 import { FaRegUser, FaSearch } from "react-icons/fa";
 import Review from "./components/Review";
 import RelatedProduct from "./components/RelatedProduct";
 
+import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
+import XIcon from "@mui/icons-material/X";
+
+import { FaLinkedinIn, FaTelegram } from "react-icons/fa6";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+
+import LocalFloristIcon from "@mui/icons-material/LocalFlorist";
+import React from "react";
+import { Colors } from "../../constants/color";
+import { IProductCart } from "../../Types/models";
+import { useDispatch } from "react-redux";
+import { handleAddToCart } from "../../features/Redux/Reducers/cartSlice";
+type ColorType = keyof typeof Colors;
 const PrevArrow = (props: any) => {
   const { onClick, currentSlide } = props;
   if (currentSlide === 0) {
@@ -54,6 +73,11 @@ const NextArrow = (props: any) => {
   );
 };
 
+// interface IProductAddCart {
+//   quantity:number;
+//   color :string;
+//   size : string
+// }
 const DetailProduct = () => {
   const settings = {
     dots: false,
@@ -65,30 +89,60 @@ const DetailProduct = () => {
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
   };
+  const dispatch = useDispatch();
   const params = useParams();
   const location = useLocation();
   console.log(location.state);
-  const [quantity, setQuantity] = useState(1);
-
+  // const [quantity, setQuantity] = useState(1);
+  const [dataProductaddCart, setDataProductaddCart] = useState<IProductCart>({
+    id: location.state.id,
+    quantity: 1,
+    color: "",
+    size: "",
+  });
   const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let value = parseInt(event.target.value);
     if (!isNaN(value)) {
-      setQuantity(value);
+      // setQuantity(value);
     }
   };
 
   const handleIncreaseQuantity = () => {
-    setQuantity(quantity + 1);
+    setDataProductaddCart({
+      ...dataProductaddCart,
+      quantity: dataProductaddCart.quantity + 1,
+    });
   };
 
   const handleDecreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
+    if (dataProductaddCart.quantity > 1) {
+      setDataProductaddCart({
+        ...dataProductaddCart,
+        quantity: dataProductaddCart.quantity - 1,
+      });
     }
   };
+  const productItem = useContext(ProductItemContext);
+  const [size, setSize] = React.useState(
+    productItem ? productItem.sizeProduct[0] : ""
+  );
+  const handleChange = (event: SelectChangeEvent) => {
+    setSize(event.target.value);
+    setDataProductaddCart({ ...dataProductaddCart, size: event.target.value });
+  };
+  const [activeColor, setActiveColor] = useState<string>(
+    productItem ? productItem.color[0] : ""
+  );
+  const handleClickColor = (color: string) => {
+    console.log(color);
+    setActiveColor(color);
+    setDataProductaddCart({ ...dataProductaddCart, color: color });
+  };
+
+  console.log(dataProductaddCart);
 
   return (
-    <Fragment>
+    <TableContainer className={styles.hung}>
       <Box>
         <div className="nav-item d-flex">
           <NavLink to="/" className="nav-link active" aria-current="page">
@@ -103,9 +157,12 @@ const DetailProduct = () => {
           </p>
         </div>
       </Box>
-      <Box className="d-flex">
-        <div className={`${styles.slidercontainer} col-lg-7`}>
-          <Box className="col-lg-8">
+      <Grid container>
+        <Box
+          className={`${styles.slidercontainer} col-md-6 col-sm-12`}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <Box className="col-8 ">
             <Box className="my-2">
               <Slider {...settings}>
                 {location.state &&
@@ -122,8 +179,8 @@ const DetailProduct = () => {
               </Slider>
             </Box>
           </Box>
-        </div>
-        <div className="col-lg-5">
+        </Box>
+        <Box className="col-md-6 col-sm-12">
           <h3>{location.state && location.state.name}</h3>
           <Box
             display="flex"
@@ -155,47 +212,231 @@ const DetailProduct = () => {
             </Typography>
           </Box>
 
-          <Box className="d-flex col-3">
-            <span
-              className="input-group-text rounded-0 rounded-start align-items-center"
-              onClick={handleDecreaseQuantity}
-              style={{ width: "20px" }}
-            >
-              -
-            </span>
-            <input
-              type="text"
-              className="form-control text-center rounded-0"
-              value={quantity}
-              aria-label="Quantity"
-              aria-describedby="decrement increment"
-              onChange={handleQuantityChange}
-              style={{ width: "35px" }}
-            />
-            <span
-              className="input-group-text rounded-0 rounded-end"
-              onClick={handleIncreaseQuantity}
-              style={{ width: "20px" }}
-            >
-              +
-            </span>
+          <Box className="d-flex">
+            {" "}
+            <Box className="d-flex col-3">
+              <span
+                className="input-group-text rounded-0 rounded-start align-items-center"
+                onClick={handleDecreaseQuantity}
+                style={{ width: "10%" }}
+              >
+                -
+              </span>
+              <input
+                type="text"
+                className="form-control text-center rounded-0"
+                value={dataProductaddCart.quantity}
+                aria-label="Quantity"
+                aria-describedby="decrement increment"
+                onChange={handleQuantityChange}
+                style={{ width: "35px" }}
+              />
+              <span
+                className="input-group-text rounded-0 rounded-end"
+                onClick={handleIncreaseQuantity}
+                style={{ width: "10%" }}
+              >
+                +
+              </span>
+            </Box>
+            <Box className="d-flex col-9">
+              <button
+                type="button"
+                className="btn btn-primary me-2 "
+                style={{ width: "40%" }}
+                onClick={() => dispatch(handleAddToCart(dataProductaddCart))}
+              >
+                Add to cart
+              </button>
+              <button
+                type="button"
+                className="btn btn-success "
+                style={{ width: "40%" }}
+              >
+                Buy now
+              </button>
+            </Box>
           </Box>
-          <Box className="d-flex col-9">
-            <button
-              type="button"
-              className="btn btn-primary me-2"
-              style={{ width: "106px" }}
-            >
-              Add to cart
-            </button>
-            <button
-              type="button"
-              className="btn btn-success"
-              style={{ width: "106px" }}
-            >
-              Buy now
-            </button>
+          <Grid className="mt-3" container>
+            <Grid item className="me-auto">
+              <button
+                style={{ border: "none", background: "none" }}
+                className="me-3"
+              >
+                <CompareArrowsIcon />
+                Compare
+              </button>
+              <button style={{ border: "none", background: "none" }}>
+                <FavoriteBorderIcon />
+                Add to wishlist
+              </button>
+            </Grid>
+            <Grid item className="d-flex">
+              <p className="me-2">Share:</p>
+              <Grid container spacing={2}>
+                <Grid item>
+                  <a
+                    href="https://www.facebook.com/sharer/sharer.php?u=https://woodmart.xtemos.com/kids/about-us/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FacebookOutlinedIcon
+                      style={{ color: "black", fontSize: "24px" }}
+                    />
+                  </a>
+                </Grid>
+                <Grid item>
+                  <a
+                    href="https://x.com/share?url=https://woodmart.xtemos.com/kids/about-us/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <XIcon style={{ color: "black" }} fontSize="small" />
+                  </a>
+                </Grid>
+
+                <Grid item>
+                  <a
+                    href="https://www.linkedin.com/shareArticle?mini=true&url=https://woodmart.xtemos.com/kids/about-us/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaLinkedinIn style={{ color: "black" }} />
+                  </a>
+                </Grid>
+                <Grid item>
+                  <a
+                    href="https://telegram.me/share/url?url=https://woodmart.xtemos.com/kids/about-us/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaTelegram style={{ color: "black" }} />
+                  </a>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Box className="mb-3 d-flex" alignItems="center">
+            <Typography component="span" fontSize="20px" fontWeight="500">
+              Size:
+            </Typography>
+            <FormControl sx={{ m: 1, minWidth: "50%" }}>
+              <Select
+                value={size}
+                onChange={handleChange}
+                displayEmpty
+                inputProps={{ "aria-label": "Without label" }}
+                className="my-2"
+              >
+                <MenuItem value="">
+                  <em>Choose an option</em>
+                </MenuItem>
+                {location.state.sizeProduct.map((item: any, index: number) => (
+                  <MenuItem value={item} key={index}>
+                    {" "}
+                    {item} Months
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Box>
+          <Box>
+            <Box className="mb-3 d-flex" alignItems="center">
+              <Typography component="span" fontSize="20px" fontWeight="500">
+                Color:
+              </Typography>
+              <Box className="d-flex">
+                {location.state.color.map((color: string, index: number) => {
+                  const colorKey = color as ColorType;
+                  return (
+                    <Box
+                      key={index}
+                      className={
+                        activeColor === color
+                          ? "border-bottom border-2 border-secondary ms-3"
+                          : "ms-3"
+                      }
+                    >
+                      <Chip
+                        key={index}
+                        onClick={() => handleClickColor(color)}
+                        sx={{
+                          width: "1.5rem",
+                          height: "1.5rem",
+                          backgroundColor: Colors[colorKey],
+                        }}
+                        className="rounded-circle"
+                      />
+                    </Box>
+                  );
+                })}
+              </Box>
+            </Box>
+          </Box>
+          <hr />
+          <Box
+            style={{
+              background: "#e6edfa",
+              height: "60px",
+              display: "flex",
+              alignItems: "center",
+              borderRadius: "10px",
+            }}
+          >
+            <p className="m-0">
+              <RemoveRedEyeIcon
+                style={{ color: "rgb(34, 71, 204)", margin: "2px" }}
+              />
+              {location.state.rating.count} People rated this product
+            </p>
+          </Box>
+          <Box className="d-flex p-4">
+            <Box
+              className="col-4"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <LocalFloristIcon
+                style={{ fontSize: "60px", color: "rgb(154 211 103)" }}
+              />
+              <p>100% Organic Cotton</p>
+            </Box>
+            <Box
+              className="col-3"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <i
+                className="fa-solid fa-mitten"
+                style={{ fontSize: "60px", color: "rgb(154 211 103)" }}
+              ></i>
+              <p>Inbuilt Mittens</p>
+            </Box>
+            <Box
+              className="col-3"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <i
+                className="fa-solid fa-user-tie"
+                style={{ fontSize: "60px", color: "rgb(154 211 103)" }}
+              ></i>
+
+              <p>Hospital Checklist</p>
+            </Box>
+          </Box>
+        </Box>
+      </Grid>
+    </TableContainer>
         </div>
       </Box>
       <Review idProduct={location.state.id} />
