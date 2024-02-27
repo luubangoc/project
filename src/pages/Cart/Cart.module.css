@@ -12,6 +12,7 @@
 .deleteIcon {
   cursor: pointer;
   opacity: 0.6;
+  margin-right: -24px;
 }
 
 .quantity {

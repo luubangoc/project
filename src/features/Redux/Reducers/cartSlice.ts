@@ -45,9 +45,17 @@ const cartSlice = createSlice({
           }
         });
         state.listProductCart = newCart;
+        localStorage.setItem(
+          "listProductCart",
+          JSON.stringify(state.listProductCart)
+        );
       } else {
         const newCart = [...state.listProductCart, payloadAction.payload];
         state.listProductCart = newCart;
+        localStorage.setItem(
+          "listProductCart",
+          JSON.stringify(state.listProductCart)
+        );
       }
     },
     handleIncreaseQuantity: (
@@ -106,7 +114,9 @@ const cartSlice = createSlice({
     handleClearCart: (state) => {
       state.listProductCart = [];
     },
-
+    handleGetDataLocalStorage: (state, payloadAction: PayloadAction<any>) => {
+      state.listProductCart = [...payloadAction.payload];
+    },
     
   },
 });
@@ -117,6 +127,7 @@ export const {
   handleReduceQuantity,
   handleDeleteProduct,
   handleClearCart,
+  handleGetDataLocalStorage,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
