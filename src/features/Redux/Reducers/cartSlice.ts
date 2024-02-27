@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IProduct, IProductCart } from "../../../Types/models";
+import { IProductCart } from "../../../Types/models";
 
 interface InitialState {
   listProductCart: IProductCart[];
@@ -45,9 +45,17 @@ const cartSlice = createSlice({
           }
         });
         state.listProductCart = newCart;
+        localStorage.setItem(
+          "listProductCart",
+          JSON.stringify(state.listProductCart)
+        );
       } else {
         const newCart = [...state.listProductCart, payloadAction.payload];
         state.listProductCart = newCart;
+        localStorage.setItem(
+          "listProductCart",
+          JSON.stringify(state.listProductCart)
+        );
       }
     },
     handleIncreaseQuantity: (
@@ -95,8 +103,8 @@ const cartSlice = createSlice({
     handleDeleteProduct: (state, payloadAction: PayloadAction<IItemCart>) => {
       const newCart = state.listProductCart.filter(
         (item) =>
-          item.id !== payloadAction.payload.id &&
-          item.color !== payloadAction.payload.color &&
+          item.id !== payloadAction.payload.id ||
+          item.color !== payloadAction.payload.color ||
           item.size !== payloadAction.payload.size
       );
 
@@ -106,6 +114,10 @@ const cartSlice = createSlice({
     handleClearCart: (state) => {
       state.listProductCart = [];
     },
+    handleGetDataLocalStorage: (state, payloadAction: PayloadAction<any>) => {
+      state.listProductCart = [...payloadAction.payload];
+    },
+    
   },
 });
 
@@ -115,6 +127,7 @@ export const {
   handleReduceQuantity,
   handleDeleteProduct,
   handleClearCart,
+  handleGetDataLocalStorage,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

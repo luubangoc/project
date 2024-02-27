@@ -7,7 +7,7 @@ import {
 } from "../Reducers/categorySlice";
 import { ICategory } from "../../../Types/models";
 
-function* handleGetCategoriesSaga() {
+function* handleGetCategoriesSaga():any {
   try {
     const res: ICategory[] = yield call(categoryApi.getAllCategories);
 

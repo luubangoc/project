@@ -1,10 +1,8 @@
-import ListProductComponent from "./listProduct";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../features/Redux/Store/store";
 
 import { ICategory, IListCategory } from "../../Types/models";
-import ListCategory from "./listCategory";
 import Navbar from "../../components/Header/Header";
 import FeatureCollection from "./featureCollection";
 import PopularProducts from "./popularProducts";
@@ -12,6 +10,12 @@ import styles from "./home.module.css";
 import Footer from "../../components/Footer/Footer";
 import Login from "../../components/Login";
 
+
+import ListCategory from "./listCategory";
+import Footer from "../../components/footer/Footer";
+import Collection from "./collection";
+
+  
 const Home = () => {
   const cart = useSelector(
     (state: RootState) => state.reducer.cartSlice.listProductCart
@@ -24,9 +28,49 @@ const Home = () => {
     item.state.includes("new")
   );
   console.log(listNewProduct);
-  const listPopularProduct = listProduct.filter((item) => item.buy > 50);
+  const listPopularProduct = listProduct.filter((item:IProduct) => item.buy > 50);
   console.log(listPopularProduct);
 
+  const settings = settingSlideHeader;
+  
+  return (
+    <div style={{ width: "100%" }}>
+     
+    <Box>
+     
+      <Slide {...settings}>
+        
+         
+        {slideImages.map((image, index) => (
+          
+          
+            <Box key={index} sx={{...divStyle,backgroundImage: `url(${image.url})`,}}>
+            
+                    <div className="position-absolute bottom-0 start-0 m-4">
+                      <div className="content">
+                      <h1 style={{ fontSize: "75px", whiteSpace: "pre-wrap"}}>{slideImages[index].title}</h1>
+                      <p style={{ whiteSpace: "pre-wrap" }}>{slideImages[index].body}</p>
+                      <NavLink to={"/shop"}>
+                        <Button type="submit">Shop now</Button>{' '}
+                      </NavLink>       
+                      </div>
+                    </div>       
+
+                </Box>
+        ))}
+        
+      </Slide>
+    </Box>
+
+      <br /><br /><br /><br />
+    
+      <div style={{ height: "50px", backgroundColor: "green" }}>
+        {" "}
+        Hùng Trần{/* Category (dùng chung) (Hung Tran) */}
+      </div>
+
+      {/* <div className="my-5">
+        <Box alignContent="center" sx={{ marginTop: 10 }}> q
   // category
   const categories = useSelector(
     (state: RootState) => state.reducer.categorySlice.categories
@@ -42,10 +86,10 @@ const Home = () => {
   return (
     <div style={{ width: "100%" }}>
       <Navbar />
-      <Login />
-      {/* <div style={{ height: "50px", backgroundColor: "green" }}> */}{" "}
+
+      <Box className="my-5">
       <ListCategory categories={categories} listProduct={listProduct} />
-      {/* </div> */}
+      </Box>
       <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
           <FeatureCollection />
@@ -53,6 +97,11 @@ const Home = () => {
             <ListProductComponent listProduct={listNewProduct} />
           </Box>
         </Box>
+      </Box>
+      <Box className='my-5'>
+        <Collection />
+      </Box>
+      <Box className="my-5">
       </div>
       <div style={{ height: "50px", backgroundColor: "white" }}>
         {" "}
@@ -65,6 +114,7 @@ const Home = () => {
             <ListProductComponent listProduct={listPopularProduct} />
           </Box>
         </Box>
+      </Box>
       </div>
       <div style={{ height: "50px", backgroundColor: "blue" }}>
         {/* Tips and articles (phu)*/}
