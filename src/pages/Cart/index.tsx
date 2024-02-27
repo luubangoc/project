@@ -17,7 +17,9 @@ import {
   Typography,
 } from "@mui/material";
 import Box from "@mui/material/Box";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { FaAlignJustify } from "react-icons/fa";
+
 import Navbar from "../../components/Header/Header";
 import { RootState } from "../../features/Redux/Store/store";
 import { useSelector } from "react-redux";
@@ -27,6 +29,7 @@ import {
   handleReduceQuantity,
 } from "../../features/Redux/Reducers/cartSlice";
 import { useDispatch } from "react-redux";
+import HeaderTab from "../../components/Header/HeaderTab";
 import styles from "./Cart.module.css";
 import { IProductCart } from "../../Types/models";
 import { useNavigate } from "react-router-dom";
@@ -80,7 +83,19 @@ const Cart = () => {
 
   return (
     <Box>
-      <Navbar />
+      <HeaderTab/>
+
+      <Stack
+        //   component="div"
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+      >
+        <Typography component="p">SHOPPING CART </Typography>
+        <Typography component="p">CHECKOUT</Typography>
+        <Typography component="p">ORDER COMPLETE</Typography>
+      </Stack>
       <NavShop />
       <Grid container>
         <Grid item xs={12} md={8}>

@@ -21,6 +21,8 @@ import { handleGetDataLocalStorage } from "./features/Redux/Reducers/cartSlice";
 
 
 function App() {
+
+
   const dispatch = useDispatch();
   if (!localStorage.getItem("listProductCart")) {
     localStorage.setItem("listProductCart", JSON.stringify([]));

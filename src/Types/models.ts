@@ -47,7 +47,7 @@ export interface IProductCart {
   quantity: number;
 }
 
-}
+
 
 // category
 export interface ICategory {
