@@ -21,6 +21,8 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import React, { useEffect, useState } from "react";
+import { FaAlignJustify } from "react-icons/fa";
+import Navbar from "../../components/Header/Header";
 import { RootState } from "../../features/Redux/Store/store";
 import { useSelector } from "react-redux";
 import {
@@ -40,21 +42,25 @@ const index = () => {
   );
   const [newCart, setNewCart] = useState([]);
   useEffect(() => {
-    const result = cart.map((item) => {
-      let newItem;
-      listProduct.forEach((product) => {
-        if (product.id === item.id) {
-          newItem = {
-            ...product,
-            ...item,
-          };
-          return newItem;
-        }
+    setNewCart((prev: any) => {
+      // let listCart = [...prev];
+      const result = cart.map((item) => {
+        let newItem;
+        listProduct.forEach((product) => {
+          if (product.id === item.id) {
+            newItem = {
+              ...product,
+              ...item,
+            };
+            return newItem;
+          }
+        });
+        return newItem;
       });
-      return newItem;
+      const listCart = [...result];
+      return listCart;
     });
-    const listCart:any = [...result];
-    setNewCart(listCart);
+    console.log(newCart);
   }, [cart]);
   console.log(cart);
 

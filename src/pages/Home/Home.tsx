@@ -1,30 +1,32 @@
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../features/Redux/Store/store";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Button from 'react-bootstrap/Button';
-import 'react-slideshow-image/dist/styles.css'
-import {Slide} from 'react-slideshow-image'
-import { NavLink } from "react-router-dom";
-import "../../App.css"
-import { settingSlideHeader } from "../../constants/settingSlideHeader";
-import { slideImages } from "../../assets/sildeImage";
-import { divStyle } from "./styleComponent";
-import { IProduct } from "../../Types/models";
+
+import { ICategory, IListCategory } from "../../Types/models";
+import Navbar from "../../components/Header/Header";
+import FeatureCollection from "./featureCollection";
+import PopularProducts from "./popularProducts";
+import styles from "./home.module.css";
+
+import ListCategory from "./listCategory";
+import Footer from "../../components/footer/Footer";
+import Collection from "./collection";
 
   
 const Home = () => {
-  const listProduct = useSelector(
-    (state: RootState) => state.reducer.productSlice.listProduct 
+  const cart = useSelector(
+    (state: RootState) => state.reducer.cartSlice.listProductCart
   );
-  const listNewProduct = listProduct.filter((item:IProduct) =>
+  const listProduct = useSelector(
+    (state: RootState) => state.reducer.productSlice.listProduct
+  );
+
+  const listNewProduct = listProduct.filter((item) =>
     item.state.includes("new")
   );
   console.log(listNewProduct);
   const listPopularProduct = listProduct.filter((item:IProduct) => item.buy > 50);
   console.log(listPopularProduct);
-
 
   const settings = settingSlideHeader;
   
@@ -66,33 +68,54 @@ const Home = () => {
 
       {/* <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}> q
-          <FeatureCollection />
-          <ListProductComponent listProduct={listNewProduct} />
-        </Box>
-      </div> */}
+  // category
+  const categories = useSelector(
+    (state: RootState) => state.reducer.categorySlice.categories
+  );
+  console.log(categories);
 
+  console.log(cart);
+
+  return (
+    <div style={{ width: "100%" }}>
+      <Navbar />
+      <Box className="my-5">
+      <ListCategory categories={categories} listProduct={listProduct} />
+      </Box>
+      <div className="my-5">
+        <Box alignContent="center" sx={{ marginTop: 10 }}>
+          <FeatureCollection />
+          <Box sx={{ overflow: "hidden" }}>
+            <ListProductComponent listProduct={listNewProduct} />
+          </Box>
+        </Box>
+      </Box>
+      <Box className='my-5'>
+        <Collection />
+      </Box>
+      <Box className="my-5">
+      </div>
       <div style={{ height: "50px", backgroundColor: "white" }}>
         {" "}
         Của ai nhận đi !{/*Organic and safe clothes set for your baby  */}
       </div>
-
-      {/* <div className="my-5">
+      <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
           <PopularProducts />
-          <ListProductComponent listProduct={listPopularProduct} />
+          <Box sx={{ overflow: "hidden", paddingBottom: "30px" }}>
+            <ListProductComponent listProduct={listPopularProduct} />
+          </Box>
         </Box>
-      </div> */}
-
+      </Box>
+      </div>
       <div style={{ height: "50px", backgroundColor: "blue" }}>
         {/* Tips and articles (phu)*/}
       </div>
-
       <div style={{ height: "50px", backgroundColor: "pink" }}>
         {/* Our instagram (thuyet) */}
       </div>
-
       <div style={{ height: "50px", backgroundColor: "blue" }}>
-        {/* footer */}
+        <Footer></Footer>
       </div>
     </div>
   );
