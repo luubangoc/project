@@ -4,7 +4,6 @@ import {
   Route,
   BrowserRouter,
 } from "react-router-dom";
-import Navbar from "./components/Header/Header";
 import Home from "./pages/Home/Home";
 import Shop from "./pages/Shop/Shop";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +21,7 @@ import Checkout from "./pages/Checkout";
 import OrderComplete from "./pages/orderComplete";
 import { RootState } from "./features/Redux/Store/store";
 import { handleGetDataLocalStorage } from "./features/Redux/Reducers/cartSlice";
+import CategoryProduct from "./pages/categoryProduct/categoryProduct";
 
 
 function App() {
@@ -57,6 +57,7 @@ function App() {
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/product/:id" element={<DetailProduct />} />
       <Route path="/orderComplete" element={<OrderComplete />} />
+      <Route path="/category/:categoryName" element={<CategoryProduct />} />
     </Routes>
   );
 }

@@ -40,6 +40,7 @@ import { Colors } from "../../constants/color";
 import { IProductCart } from "../../Types/models";
 import { useDispatch } from "react-redux";
 import { handleAddToCart } from "../../features/Redux/Reducers/cartSlice";
+import HeaderTab from "../../components/Header/HeaderTab";
 type ColorType = keyof typeof Colors;
 const PrevArrow = (props: any) => {
   const { onClick, currentSlide } = props;
@@ -73,11 +74,6 @@ const NextArrow = (props: any) => {
   );
 };
 
-// interface IProductAddCart {
-//   quantity:number;
-//   color :string;
-//   size : string
-// }
 const DetailProduct = () => {
   const settings = {
     dots: false,
@@ -93,7 +89,6 @@ const DetailProduct = () => {
   const params = useParams();
   const location = useLocation();
   console.log(location.state);
-  // const [quantity, setQuantity] = useState(1);
   const [dataProductaddCart, setDataProductaddCart] = useState<IProductCart>({
     id: location.state.id,
     quantity: 1,
@@ -142,7 +137,12 @@ const DetailProduct = () => {
   console.log(dataProductaddCart);
 
   return (
+    <Fragment>
+      <Box>
+        <HeaderTab />
+      </Box>
     <TableContainer className={styles.hung}>
+   
       <Box>
         <div className="nav-item d-flex">
           <NavLink to="/" className="nav-link active" aria-current="page">
@@ -437,10 +437,8 @@ const DetailProduct = () => {
         </Box>
       </Grid>
     </TableContainer>
-        </div>
-      </Box>
-      <Review idProduct={location.state.id} />
-      <RelatedProduct category={location.state.categoryName} />
+    // <Review idProduct={location.state.id} />
+    // <RelatedProduct category={location.state.categoryName} />
     </Fragment>
   );
 };

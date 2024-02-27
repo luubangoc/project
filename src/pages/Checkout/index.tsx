@@ -28,7 +28,6 @@ import {
   FormikValues,
 } from "formik";
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/Header/Header";
 import styles from "./Checkout.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -39,6 +38,7 @@ import {
 import { RootState } from "../../features/Redux/Store/store";
 import { IProductCart } from "../../Types/models";
 import NavShop from "../../components/navShop";
+import HeaderTab from "../../components/Header/HeaderTab";
 
 interface DetailForm {
   firstName: string;
@@ -134,7 +134,7 @@ const Checkout = () => {
 
   return (
     <div>
-      <Navbar />
+      <HeaderTab />
       <NavShop />
       <div className="mx-4">
         <Grid container className={styles.addCoupon}>

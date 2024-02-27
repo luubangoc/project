@@ -9,15 +9,9 @@ import "../../App.css"
 
 
 const HeaderTab = () => {
-
-    
-
     return (
-
        <header className="navbar nav-link " style={{background:"#ff99cc" }}>
-        
 
-       
         <div className="container">
         <div className="logo">
              <NavLink to="/">    

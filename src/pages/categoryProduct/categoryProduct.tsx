@@ -1,11 +1,11 @@
 import { Box } from '@mui/material'
 import React, { Fragment } from 'react'
-import ListCategory from '../home/listCategory'
 import ListProductShop from '../../components/listproductshop'
-import Navbar from '../../components/Header/Header'
 import { useLocation } from 'react-router-dom'
 import { RootState } from '../../features/Redux/Store/store'
 import { useSelector } from 'react-redux'
+import HeaderTab from '../../components/Header/HeaderTab'
+import ListCategory from '../Home/listCategory'
 
 const CategoryProduct = () => {
     const categories = useSelector(
@@ -21,7 +21,7 @@ const CategoryProduct = () => {
     <Fragment>
       <Box>
         <Box>
-          <Navbar />
+          <HeaderTab />
         </Box>
         <Box><ListCategory categories={categories} listProduct={listProduct}></ListCategory></Box>
         <Box className="px-2 py-4 my-4">
