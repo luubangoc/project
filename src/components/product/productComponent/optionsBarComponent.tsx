@@ -6,14 +6,16 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { styled } from "@mui/material/styles";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import { useState } from "react";
-import DialogProductComponent from "./dialogProduct/dialogProductComponent";
-import { IProduct } from "../../Types/models";
+import { useDispatch } from "react-redux";
+import { IProduct } from "../../../Types/models";
+import { handleAddToCart } from "../../../features/Redux/Reducers/cartSlice";
+import DialogProductComponent from "../dialogProduct";
 
-interface ProductItemProps {
+interface IOp {
   productItem: IProduct;
 }
 
-const OptionsBarComponent = ({ productItem }: ProductItemProps) => {
+const OptionsBarComponent = ({ productItem }: IOp) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -32,11 +34,29 @@ const OptionsBarComponent = ({ productItem }: ProductItemProps) => {
       backgroundColor: theme.palette.common.black,
     },
   }));
+  // function dispatch(arg0: {
+  //   payload: import("../../Types/models").IItemCart;
+  //   type: "cart/handleAddToCart";
+  // }): void {
+  //   throw new Error("Function not implemented.");
+  // }
+  const dispatch = useDispatch();
   return (
     <>
       <Card className="w-75 mx-auto d-flex justify-content-center rounded ">
         <BootstrapTooltip title="Add to Cart" placement="top">
-          <IconButton>
+          <IconButton
+            onClick={() =>
+              dispatch(
+                handleAddToCart({
+                  id: productItem.id,
+                  size: productItem.sizeProduct[0],
+                  color: productItem.color[0],
+                  quantity: 1,
+                })
+              )
+            }
+          >
             <ShoppingCartOutlinedIcon />
           </IconButton>
         </BootstrapTooltip>
@@ -56,18 +76,14 @@ const OptionsBarComponent = ({ productItem }: ProductItemProps) => {
             <CompareArrowsIcon />
           </IconButton>
         </BootstrapTooltip>
-
+        <p></p>
         <BootstrapTooltip title="Add to wishlist" placement="top">
           <IconButton>
             <FavoriteBorderOutlinedIcon />
           </IconButton>
         </BootstrapTooltip>
       </Card>
-      <DialogProductComponent
-        open={open}
-        onHandleClose={handleClose}
-        productItem={productItem}
-      ></DialogProductComponent>
+      <DialogProductComponent open={open} onHandleClose={handleClose} />
     </>
   );
 };

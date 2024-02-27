@@ -11,17 +11,18 @@ import "../../App.css"
 import { settingSlideHeader } from "../../constants/settingSlideHeader";
 import { slideImages } from "../../assets/sildeImage";
 import { divStyle } from "./styleComponent";
+import { IProduct } from "../../Types/models";
 
   
 const Home = () => {
   const listProduct = useSelector(
-    (state: RootState) => state.reducer.productReducer.listProduct
+    (state: RootState) => state.reducer.productSlice.listProduct 
   );
-  const listNewProduct = listProduct.filter((item) =>
+  const listNewProduct = listProduct.filter((item:IProduct) =>
     item.state.includes("new")
   );
   console.log(listNewProduct);
-  const listPopularProduct = listProduct.filter((item) => item.buy > 50);
+  const listPopularProduct = listProduct.filter((item:IProduct) => item.buy > 50);
   console.log(listPopularProduct);
 
 

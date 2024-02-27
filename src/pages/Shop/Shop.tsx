@@ -1,13 +1,9 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 
 const Shop = () => {
   return (
-    <div>
-     
-    </div>
-  
+    <div>Shop</div>
   )
 }
 
-export default Shop
+export default Shop;
