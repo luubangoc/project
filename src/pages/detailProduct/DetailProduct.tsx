@@ -22,6 +22,11 @@ import { NavLink, useLocation, useParams } from "react-router-dom";
 import styles from "../detailProduct/detailProduct.module.css";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { IoMdHome } from "react-icons/io";
+import { FaShoppingBag } from "react-icons/fa";
+import { FaRegUser, FaSearch } from "react-icons/fa";
+import Review from "./components/Review";
+import RelatedProduct from "./components/RelatedProduct";
 
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import XIcon from "@mui/icons-material/X";
@@ -432,6 +437,11 @@ const DetailProduct = () => {
         </Box>
       </Grid>
     </TableContainer>
+        </div>
+      </Box>
+      <Review idProduct={location.state.id} />
+      <RelatedProduct category={location.state.categoryName} />
+    </Fragment>
   );
 };
 

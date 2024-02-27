@@ -5,6 +5,7 @@ export var settingSlickProduct = {
   slidesToShow: 5,
   slidesToScroll: 5,
   initialSlide: 0,
+  arrows: false,
   responsive: [
     {
       breakpoint: 1200,
