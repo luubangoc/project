@@ -58,6 +58,7 @@ const Cart = () => {
       });
       return newItem;
     });
+
     const listCart: any = result.filter(
       (item) => item !== undefined
     ) as IProductCart[];

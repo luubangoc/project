@@ -7,6 +7,9 @@ import Navbar from "../../components/Header/Header";
 import FeatureCollection from "./featureCollection";
 import PopularProducts from "./popularProducts";
 import styles from "./home.module.css";
+import Footer from "../../components/Footer/Footer";
+import Login from "../../components/Login";
+
 
 import ListCategory from "./listCategory";
 import Footer from "../../components/footer/Footer";
@@ -76,9 +79,14 @@ const Home = () => {
 
   console.log(cart);
 
+  const userLogin = useSelector(
+    (state: RootState) => state.reducer.loginSlice.user
+  );
+  console.log(userLogin);
   return (
     <div style={{ width: "100%" }}>
       <Navbar />
+
       <Box className="my-5">
       <ListCategory categories={categories} listProduct={listProduct} />
       </Box>
