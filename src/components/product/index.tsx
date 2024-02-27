@@ -2,10 +2,10 @@ import React, { createContext, useState } from "react";
 import { IProduct } from "../../Types/models";
 import styles from "./product.module.css";
 import { Box, Card, CardContent, Grid } from "@mui/material";
-import OptionsBarComponent from "./productComponent/optionsBarComponent";
 import StateProductComponent from "./productComponent/stateProductComponent";
-import ImageProductComponent from "./productComponent/imageProductComponent";
+import OptionsBarComponent from "./productComponent/optionsBarComponent";
 import ContentProductComponent from "./productComponent/contentProductComponent";
+import ImageProductComponent from "./productComponent/imageProductComponent";
 interface ProductItemProps {
   productItem: IProduct;
 }
@@ -23,6 +23,7 @@ const ProductItemComponent = ({ productItem }: ProductItemProps) => {
   const handleMouseLeave = () => {
     setHoverState(false);
   };
+
   return (
     <ProductItemContext.Provider value={productItem}>
       <Grid
@@ -50,7 +51,7 @@ const ProductItemComponent = ({ productItem }: ProductItemProps) => {
                     !hoverState ? styles.optionBar : styles.optionBarHover
                   }
                 >
-                  <OptionsBarComponent />
+                  <OptionsBarComponent productItem={productItem} />
                 </Grid>
               </Box>
             </Box>

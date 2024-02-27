@@ -1,4 +1,4 @@
-import { IProduct } from './../../Types/models';
+import { IProduct } from '../../Types/models';
 
 
 export function FilterByPrice(listProduct:IProduct[] , arrPrice:number[] ){

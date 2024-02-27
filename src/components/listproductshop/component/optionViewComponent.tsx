@@ -14,6 +14,7 @@ import ViewCompactIcon from "@mui/icons-material/ViewCompact";
 import ViewCompactTwoToneIcon from "@mui/icons-material/ViewCompactTwoTone";
 import React, { useState } from "react";
 import styles from "../shop.module.css";
+import { useLocation } from "react-router-dom";
 
 interface OptionViewProps {
   onhandleProductQuantity(value: number): void;
@@ -32,22 +33,23 @@ const OptionViewComponent = ({
     onSelectSort(event.target.value);
   };
 
+  const location = useLocation();
   return (
     <Box>
       <Grid spacing={2} container className="d-flex justify-content-around">
         <Box className="d-flex px-2">
           <Grid item xs={12} display="flex" alignItems="center">
             <Typography component="span">
-              Home /{" "}
+              Home{" "}
               <Typography component="strong" fontWeight="500">
-                Shop
+                {location.pathname}
               </Typography>
             </Typography>
           </Grid>
         </Box>
         <Grid
           item
-          xs={10}
+          xs={8}
           container
           display="flex"
           justifyContent="end"

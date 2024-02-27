@@ -16,7 +16,7 @@ import {
   FilterProductSize,
   colortFilterArray,
   sizeFilterArray,
-} from "../../../features/filterProduct/filterProduct";
+} from "../../../features/filterproduct/filterProduct";
 import styles from "../shop.module.css";
 import { Colors } from "../../../constants/color";
 

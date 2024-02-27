@@ -6,17 +6,17 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../features/Redux/Store/store";
 import { IProduct } from "../../Types/models";
 import ListProductPage from "./component/listProductPage";
-import * as SortProduct from "../../features/sortProduct/sortProduct";
-import * as FilterProduct from "../../features/filterProduct/filterProduct";
+import * as SortProduct from "../../features/sortproduct/sortProduct";
+import * as FilterProduct from "../../features/filterproduct/filterProduct";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./shop.module.css";
 
-const ListProductShop = () => {
-  const listProduct = useSelector(
-    (state: RootState) => state.reducer.productReducer.listProduct
-  );
-
+interface ListProductProps {
+  listProduct:IProduct[] ; 
+}
+const ListProductShop = ({listProduct}:ListProductProps) => {
+ 
   const [listProductShop, setListProductShop] = useState<IProduct[]>([]);
   const [listProductPage, setListProductPage] = useState<IProduct[]>([]);
   const [pageNumber, setPageNumber] = useState<number>(0);

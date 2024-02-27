@@ -1,8 +1,7 @@
 interface IRating {
-    rate:number ; 
-    count:number ; 
+  rate: number;
+  count: number;
 }
-
 
 export interface IProduct {
     id:string ; 
@@ -19,11 +18,38 @@ export interface IProduct {
     state:string [] ; 
     buy:number ; 
     quantityProduct:number;
+
 }
 
 export interface IListProduct {
-    listProduct:IProduct[] ; 
+  listProduct: IProduct[];
 }
 
+// category
+export interface ICategory {
+  id: string;
+  name: string;
+  image: string;
+}
+export interface IListCategory {
+  categories: ICategory[];
+}
 
+// cart
+export interface IItemCart {
+  product: IProduct;
+  quantity: number;
+}
 
+export interface IProductCart {
+  id: string;
+  size: string;
+  color: string;
+  quantity: number;
+}
+
+export interface IItemCart {
+  id: string;
+  size: string;
+  color: string;
+}
