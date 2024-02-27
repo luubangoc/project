@@ -24,6 +24,7 @@ const OptionsBarComponent = ({ productItem }: IOp) => {
   const handleClose = (open: boolean) => {
     setOpen(open);
   };
+
   const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({

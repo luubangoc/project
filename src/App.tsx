@@ -4,9 +4,6 @@ import {
   Route,
   BrowserRouter,
 } from "react-router-dom";
-import Navbar from "./components/Header/Header";
-import Home from "./pages/Home/Home";
-import Shop from "./pages/Shop/Shop";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { handleProductsFetchRequest } from "./features/Redux/Reducers/productSlice";
@@ -14,6 +11,7 @@ import "./App.css";
 import { handleGetCategories } from "./features/Redux/Reducers/categorySlice";
 import DetailProduct from "./pages/detailProduct/DetailProduct";
 import Cart from "./pages/Cart";
+
 
 function App() {
   const dispatch = useDispatch();

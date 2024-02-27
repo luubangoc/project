@@ -4,12 +4,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../features/Redux/Store/store";
 
 import { ICategory, IListCategory } from "../../Types/models";
-import ListCategory from "./listCategory";
 import Navbar from "../../components/Header/Header";
 import FeatureCollection from "./featureCollection";
 import PopularProducts from "./popularProducts";
 import styles from "./home.module.css";
-import Footer from "../../components/Footer/Footer";
+
+import ListCategory from "./listCategory";
+import Footer from "../../components/footer/Footer";
+import Collection from "./collection";
 
 const Home = () => {
   const cart = useSelector(
@@ -37,9 +39,9 @@ const Home = () => {
   return (
     <div style={{ width: "100%" }}>
       <Navbar />
-      {/* <div style={{ height: "50px", backgroundColor: "green" }}> */}{" "}
+      <Box className="my-5">
       <ListCategory categories={categories} listProduct={listProduct} />
-      {/* </div> */}
+      </Box>
       <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
           <FeatureCollection />
@@ -47,6 +49,11 @@ const Home = () => {
             <ListProductComponent listProduct={listNewProduct} />
           </Box>
         </Box>
+      </Box>
+      <Box className='my-5'>
+        <Collection />
+      </Box>
+      <Box className="my-5">
       </div>
       <div style={{ height: "50px", backgroundColor: "white" }}>
         {" "}
@@ -59,6 +66,7 @@ const Home = () => {
             <ListProductComponent listProduct={listPopularProduct} />
           </Box>
         </Box>
+      </Box>
       </div>
       <div style={{ height: "50px", backgroundColor: "blue" }}>
         {/* Tips and articles (phu)*/}
