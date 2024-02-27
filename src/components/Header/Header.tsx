@@ -7,6 +7,7 @@ import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 
 const Navbar = () => {
+
   return (
     <nav className="navbar navbar-light bg-light">
       {/* 1 */}
@@ -103,9 +104,9 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              {/* My withlist  */}
+              {/* My wishlist  */}
               <NavLink to="/shop" className="nav-link" style={{ fontSize: 25 }}>
-                <Tooltip title="My withlist">
+                <Tooltip title="My wishlist">
                   <IconButton>
                     <IoIosHeartEmpty />
                   </IconButton>
@@ -115,16 +116,13 @@ const Navbar = () => {
 
             <li className="nav-item">
               {/* Shopping cart */}
-              <NavLink to="/shop" className="nav-link" style={{ fontSize: 25 }}>
+              <NavLink to="/cart" className="nav-link" style={{ fontSize: 25 }}>
                 <Tooltip title="Shopping cart">
                   <IconButton>
                     <FaShoppingBag />
                   </IconButton>
                 </Tooltip>
               </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/cart"}>cart</NavLink>
             </li>
           </ul>
         </div>

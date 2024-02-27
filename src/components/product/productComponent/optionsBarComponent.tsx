@@ -6,10 +6,11 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { styled } from "@mui/material/styles";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { IProduct } from "../../../Types/models";
+import { useDispatch, useSelector } from "react-redux";
+import { IProduct, IProductCart } from "../../../Types/models";
 import { handleAddToCart } from "../../../features/Redux/Reducers/cartSlice";
 import DialogProductComponent from "../dialogProduct";
+import ShoppingCart from "../../shoppingCart";
 
 interface IOp {
   productItem: IProduct;
@@ -17,6 +18,20 @@ interface IOp {
 
 const OptionsBarComponent = ({ productItem }: IOp) => {
   const [open, setOpen] = useState(false);
+  const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
+  
+  const selectedProducts = useSelector((state: any) => state.reducer.cartSlice.listProductCart);
+
+
+  const handleOpenShoppingCart = () => {
+    setIsShoppingCartOpen(true);
+  };
+
+  const handleCloseShoppingCart = () => {
+    setIsShoppingCartOpen(false);
+  };
+
+  
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,26 +57,28 @@ const OptionsBarComponent = ({ productItem }: IOp) => {
   //   throw new Error("Function not implemented.");
   // }
   const dispatch = useDispatch();
+  
   return (
     <>
       <Card className="w-75 mx-auto d-flex justify-content-center rounded ">
         <BootstrapTooltip title="Add to Cart" placement="top">
           <IconButton
-            onClick={() =>
-              dispatch(
-                handleAddToCart({
-                  id: productItem.id,
-                  size: productItem.sizeProduct[0],
-                  color: productItem.color[0],
-                  quantity: 1,
-                })
-              )
-            }
+            onClick={() => {
+              const product: IProductCart = {
+                id: productItem.id,
+                size: productItem.sizeProduct[0],
+                color: productItem.color[0],
+                quantity: 1,
+              };
+          
+              dispatch(handleAddToCart(product));
+              handleOpenShoppingCart()
+            }}
           >
             <ShoppingCartOutlinedIcon />
           </IconButton>
         </BootstrapTooltip>
-
+        <ShoppingCart products={selectedProducts} isOpen={isShoppingCartOpen} onClose={handleCloseShoppingCart}/>
         <BootstrapTooltip
           title="Quick view"
           placement="top"

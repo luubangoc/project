@@ -11,6 +11,7 @@ import "./App.css";
 import { handleGetCategories } from "./features/Redux/Reducers/categorySlice";
 import DetailProduct from "./pages/detailProduct/DetailProduct";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
     dispatch(handleGetCategories());
   }, []);
   return (
+    
     <Routes>
       <Route path="/" element={<Home />} />
       {/* <Route path="/about" element={<About />} />
@@ -27,6 +29,7 @@ function App() {
             <Route path="/blog" element={<Blog />} /> */}
       <Route path="/shop" element={<Shop />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/checkout" element={<Checkout />} />
       <Route path="/product/:id" element={<DetailProduct />} />
     </Routes>
   );
