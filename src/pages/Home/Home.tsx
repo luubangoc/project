@@ -4,15 +4,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../features/Redux/Store/store";
 
 import { ICategory, IListCategory } from "../../Types/models";
-
 import Navbar from "../../components/Header/Header";
 import FeatureCollection from "./featureCollection";
 import PopularProducts from "./popularProducts";
 import styles from "./home.module.css";
+
 import ListCategory from "./listCategory";
 import Footer from "../../components/footer/Footer";
 import Collection from "./collection";
-
 
 const Home = () => {
   const cart = useSelector(
@@ -40,8 +39,10 @@ const Home = () => {
   return (
     <div style={{ width: "100%" }}>
       <Navbar />
-      <ListCategory categories={categories} listProduct={listProduct} />
       <Box className="my-5">
+      <ListCategory categories={categories} listProduct={listProduct} />
+      </Box>
+      <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
           <FeatureCollection />
           <Box sx={{ overflow: "hidden" }}>
@@ -53,6 +54,12 @@ const Home = () => {
         <Collection />
       </Box>
       <Box className="my-5">
+      </div>
+      <div style={{ height: "50px", backgroundColor: "white" }}>
+        {" "}
+        Của ai nhận đi !{/*Organic and safe clothes set for your baby  */}
+      </div>
+      <div className="my-5">
         <Box alignContent="center" sx={{ marginTop: 10 }}>
           <PopularProducts />
           <Box sx={{ overflow: "hidden", paddingBottom: "30px" }}>
@@ -60,6 +67,7 @@ const Home = () => {
           </Box>
         </Box>
       </Box>
+      </div>
       <div style={{ height: "50px", backgroundColor: "blue" }}>
         {/* Tips and articles (phu)*/}
       </div>

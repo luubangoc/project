@@ -11,9 +11,7 @@ import "./App.css";
 import { handleGetCategories } from "./features/Redux/Reducers/categorySlice";
 import DetailProduct from "./pages/detailProduct/DetailProduct";
 import Cart from "./pages/Cart";
-import Home from "./pages/home/Home";
-import Shop from "./pages/shop/Shop";
-import CategoryProduct from "./pages/categoryProduct/categoryProduct";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -30,7 +28,6 @@ function App() {
       <Route path="/shop" element={<Shop />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/product/:id" element={<DetailProduct />} />
-      <Route path="/category/:categoryName" element={<CategoryProduct />} />
     </Routes>
   );
 }

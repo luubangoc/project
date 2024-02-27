@@ -18,11 +18,35 @@ export interface IProduct {
     state:string [] ; 
     buy:number ; 
     quantityProduct:number;
-
 }
 
 export interface IListProduct {
   listProduct: IProduct[];
+}
+
+// category
+export interface ICategory {
+  id: string;
+  name: string;
+  image: string;
+}
+export interface IListCategory {
+  categories: ICategory[];
+}
+
+// cart
+export interface IItemCart {
+  product: IProduct;
+  quantity: number;
+}
+
+export interface IProductCart {
+  id: string;
+  size: string;
+  color: string;
+  quantity: number;
+}
+
 }
 
 // category

@@ -46,7 +46,18 @@ const OptionsBarComponent = ({ productItem }: IOp) => {
     <>
       <Card className="w-75 mx-auto d-flex justify-content-center rounded ">
         <BootstrapTooltip title="Add to Cart" placement="top">
-          <IconButton>
+          <IconButton
+            onClick={() =>
+              dispatch(
+                handleAddToCart({
+                  id: productItem.id,
+                  size: productItem.sizeProduct[0],
+                  color: productItem.color[0],
+                  quantity: 1,
+                })
+              )
+            }
+          >
             <ShoppingCartOutlinedIcon />
           </IconButton>
         </BootstrapTooltip>
