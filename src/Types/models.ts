@@ -13,15 +13,21 @@ interface IRating {
 export interface IProduct {
     id:string ; 
     name:string ; 
-    image:string [] ; 
+    images:string [] ; 
     description:string ; 
     price:number ; 
-    category:string ; 
+    categoryName:string ; 
     sizeProduct: ISize [] ;
     brand:string ; 
     color: string [] ; 
     discount:number ; 
     rating: IRating ;
+    state:string [] ; 
+    buy:number ; 
+}
+
+export interface IListProduct {
+    listProduct:IProduct[] ; 
 }
 
 
