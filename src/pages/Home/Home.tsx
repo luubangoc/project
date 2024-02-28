@@ -15,7 +15,7 @@ import { slideImages } from "../../assets/sildeImage";
 import Slider from "react-slick";
 import { NavLink } from "react-router-dom";
 import { divStyle } from "./styleComponent";
-import HeaderTab from "../../components/Header/HeaderTab";
+
 
 const Home = () => {
   const cart = useSelector(
@@ -40,24 +40,23 @@ const Home = () => {
 
   return (
     <Fragment>
-      <Box>
-        <HeaderTab />
-      </Box>
+     
       <Box>
         <Slider {...settings}>
               {slideImages.map((image, index) => (  
-                <Box key={index} sx={{...divStyle,backgroundImage: `url(${image.url})`,}}>
+                <Box key={index} sx={{...divStyle,backgroundImage: `url(${image.url})`,color:"white"}}>
                 
                         <div className="position-absolute bottom-0 start-0 m-4">
                           <div className="content">
                           <h1 style={{ fontSize: "75px", whiteSpace: "pre-wrap"}}>{slideImages[index].title}</h1>
                           <p style={{ whiteSpace: "pre-wrap" }}>{slideImages[index].body}</p>
                           <NavLink to={"/shop"}>
-                            <Button type="submit">Shop now</Button>{' '}
+                          <Button variant="contained" color="primary">
+                            Shop Now
+                          </Button>
                           </NavLink>       
                           </div>
                         </div>       
-
                     </Box>
             ))}
         </Slider>
@@ -84,9 +83,9 @@ const Home = () => {
           </Box>
         </Box>
       </Box>
-      <Box>
+      {/* <Box>
         <Footer></Footer>
-      </Box>
+      </Box> */}
     </Fragment>
   );
 };

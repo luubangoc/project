@@ -22,6 +22,8 @@ import OrderComplete from "./pages/orderComplete";
 import { RootState } from "./features/Redux/Store/store";
 import { handleGetDataLocalStorage } from "./features/Redux/Reducers/cartSlice";
 import CategoryProduct from "./pages/categoryProduct/categoryProduct";
+import HeaderTab from "./components/Header/HeaderTab";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -45,13 +47,13 @@ function App() {
     dispatch(handleGetDataLocalStorage(storageCart === "" ? [] : storageCart));
   }, []);
   return (
-    <Routes>
+    <div>
+      <div className="headerTab">
+        <HeaderTab/>
+      </div>
+       <Routes>
       <Route path="/" element={<Home />} />
-      {/* <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} /> */}
       <Route path="/pucharse" element={<Pucharse />} />
-
       <Route path="/shop" element={<Shop />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/checkout" element={<Checkout />} />
@@ -59,6 +61,9 @@ function App() {
       <Route path="/orderComplete" element={<OrderComplete />} />
       <Route path="/category/:categoryName" element={<CategoryProduct />} />
     </Routes>
+    <Footer/>
+    </div>
+   
   );
 }
 

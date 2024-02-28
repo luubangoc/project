@@ -1,5 +1,5 @@
 export const settingSlideHeader = {
-    dots: true,
+    dots: false,
     arrows : false,
     infinite: true,
     autoplay: true,
