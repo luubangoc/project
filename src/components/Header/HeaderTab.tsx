@@ -7,6 +7,8 @@ import 'react-slideshow-image/dist/styles.css'
 import "../../index.css"
 import { Box } from "@mui/material";
 import { FaBars } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
+
 
 
 
@@ -14,12 +16,57 @@ import { FaBars } from "react-icons/fa";
 const HeaderTab = () => {
     return (
        <header className="navbar nav-link " style={{background:"#ff99cc" }}>
-
-     
-          <input type="checkbox" id="check" />
-          <label htmlFor="check" className="checkbtn">
-          <FaBars />
+        <label htmlFor="mb-input" className="checkbtn"><FaBars /></label>
+        <input type="checkbox" hidden className="mb-input" id="mb-input" />
+        <label htmlFor="mb-input" className="overlay"></label>
+         <div className="reponsive-mb">
+          <div>
+          <label htmlFor="mb-input" className="closes">
+          <IoClose />
           </label>
+          </div>
+          <br /><hr />
+          
+            
+
+          <div className="repomsive-mb-list">
+
+          <div  >
+          <NavLink to="/" className="mbb nav-link" aria-current="page">
+           Home Page
+          </NavLink>
+        </div>
+        
+        <div >
+             <NavLink to="/shop" className="mbb nav-link">
+              Shop
+             </NavLink>
+        </div>
+        
+        <div  >
+          <NavLink to="/about" className="mbb nav-link ">
+             About Us
+          </NavLink>
+        </div>
+        <div >
+          <NavLink to="/contact" className="mbb nav-link">
+             Contact
+          </NavLink>
+        </div>
+        <div >
+            <NavLink to="/blog" className="mbb nav-link">
+               Blog
+            </NavLink>
+        </div>
+
+        
+
+          </div>
+        
+        </div>
+        
+          
+          
 
           <Box className="logo ">
              <NavLink to="/">    
@@ -49,17 +96,17 @@ const HeaderTab = () => {
              </NavLink>
         </div>
         
-        <div className="a nav-item p-2 flex-fill" >
+        <div className="nav-item p-2 flex-fill" >
           <NavLink to="/about" className="nav-link ">
              About Us
           </NavLink>
         </div>
-        <div className="a nav-item p-2 flex-fill" >
+        <div className=" nav-item p-2 flex-fill" >
           <NavLink to="/contact" className="nav-link">
              Contact
           </NavLink>
         </div>
-        <div className="a nav-item p-2 flex-fill">
+        <div className="nav-item p-2 flex-fill">
             <NavLink to="/blog" className="nav-link">
                Blog
             </NavLink>
@@ -99,7 +146,7 @@ const HeaderTab = () => {
                 <Tooltip title="My withlist">
                   <IconButton >
                       <IoIosHeartEmpty />
-                      <span className="carousel"></span>
+                      
                   </IconButton>
                 </Tooltip>
               </NavLink>
@@ -111,7 +158,7 @@ const HeaderTab = () => {
                 <Tooltip title="Shopping cart">
                 <IconButton >
                       <FaShoppingBag />
-                      <span className="carousel"></span>
+                      
                   </IconButton>
                 </Tooltip>
               </NavLink>

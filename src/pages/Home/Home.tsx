@@ -10,11 +10,11 @@ import Collection from "./collection";
 import { Fragment } from "react";
 import { settingSlideHeader } from "../../constants/settingSlideHeader";
 import ListProductComponent from "./listProduct";
-import Footer from "../../components/Footer/Footer";
 import { slideImages } from "../../assets/sildeImage";
 import Slider from "react-slick";
 import { NavLink } from "react-router-dom";
 import { divStyle } from "./styleComponent";
+import "../../App.css"
 
 
 const Home = () => {
@@ -44,7 +44,7 @@ const Home = () => {
       <Box>
         <Slider {...settings}>
               {slideImages.map((image, index) => (  
-                <Box key={index} sx={{...divStyle,backgroundImage: `url(${image.url})`,color:"white"}}>
+                <Box key={index} sx={{...divStyle,backgroundImage: `url(${image.url})`,color:"white",}}>
                 
                         <div className="position-absolute bottom-0 start-0 m-4">
                           <div className="content">
